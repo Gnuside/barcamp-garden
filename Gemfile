@@ -28,6 +28,10 @@ gem 'haml-rails', :group => :development
 # User management
 gem "devise"
 
+# Static pages
+gem "high_voltage", "~> 1.2.0"
+
+
 gem 'jquery-rails'
 
 # To use ActiveModel has_secure_password
