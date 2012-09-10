@@ -22,8 +22,8 @@ group :assets do
 end
 
 ## Haml support
-gem "haml"
-gem 'haml-rails', :group => :development
+gem "haml", "~> 3.1.7"
+gem 'haml-rails', "~> 0.3.5", :group => :development
 
 # User management
 gem "devise"
@@ -41,7 +41,7 @@ gem 'jquery-rails'
 # gem 'jbuilder'
 
 # Use unicorn as the app server
-gem 'unicorn'
+gem 'unicorn', "~> 4.3.1"
 
 # Deploy with Capistrano
 gem 'capistrano'
