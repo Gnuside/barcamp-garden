@@ -27,6 +27,7 @@ gem 'haml-rails', "~> 0.3.5", :group => :development
 
 # User management
 gem "devise"
+gem 'omniauth'
 
 # Static pages
 gem "high_voltage", "~> 1.2.0"
