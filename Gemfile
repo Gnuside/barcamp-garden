@@ -29,7 +29,7 @@ gem 'haml-rails', "~> 0.3.5", :group => :development
 gem "devise"
 gem 'omniauth'
 gem 'omniauth-twitter'
-#gem 'omniauth-facebook'
+gem 'omniauth-facebook'
 #gem 'omniauth-linkedin'
 #gem 'omniauth-google'
 
