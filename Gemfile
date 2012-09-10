@@ -21,8 +21,12 @@ group :assets do
   gem "twitter-bootstrap-rails"
 end
 
+## Haml support
 gem "haml"
 gem 'haml-rails', :group => :development
+
+# User management
+gem "devise"
 
 gem 'jquery-rails'
 
