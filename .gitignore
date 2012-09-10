@@ -8,6 +8,9 @@
 /.bundle
 /vendor/bundle
 
+# Ignore local config files
+/config/omniauth.yml
+
 # Ignore Gemfile locked version
 Gemfile.lock
 
