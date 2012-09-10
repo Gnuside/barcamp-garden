@@ -30,7 +30,15 @@
 						%ul.nav
 							%li= link_to "Link 1", "/path1"
 							%li= link_to "Link 2", "/path2"
-							%li= link_to "Link 3", "/path3"
+						%div.pull-right
+							%p 
+								- if user_signed_in?
+									Signed in as #{current_user.email}.
+									= link_to "Sign out", "/users/sign_out", :method => :delete
+								- else
+									= link_to "Register", "/users/sign_up"
+									or
+									= link_to "Sign In", "/users/sign_in"
 
 	.container
 
@@ -38,14 +46,14 @@
 		.row
 			.span3
 				.well.sidebar-nav
-					%h3 Navigation
 					%ul.nav.nav-list
-						%li.nav-header Event
+						%li.nav-header Navigation
 						%li= link_to "Home", "/home"
 						%li= link_to "Guest list", "/guestlist"
 						%li= link_to "Schedule", "/schedule"
 						%li= link_to "Media stream", "/mediastream"
 
+				.well.sidebar-nav
 					%ul.nav.nav-list
 						%li.nav-header Special features
 						%li= link_to "Home", "/home"
