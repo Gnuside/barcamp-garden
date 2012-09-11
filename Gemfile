@@ -47,6 +47,9 @@ gem 'rails_admin'
 gem "high_voltage", "~> 1.2.0"
 
 
+# Etherpad-lite API
+gem "etherpad-lite"
+
 gem 'jquery-rails'
 
 # To use ActiveModel has_secure_password
