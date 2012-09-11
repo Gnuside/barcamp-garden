@@ -5,8 +5,8 @@ namespace :db do
     desc "create default admin user"
     task :admin => :environment do
       admin = User.create(
-        :login => "admin", 
-        :name => "My Admin", 
+        #:login => "admin", 
+        #:name => "My Admin", 
         :email => "admin@example.com", 
         :password => "admin", 
         :password_confirmation => "admin"
