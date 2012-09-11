@@ -1,4 +1,6 @@
 BarcampGarden::Application.routes.draw do
+  resources :events
+
   resources :authentications
 
   devise_for :users

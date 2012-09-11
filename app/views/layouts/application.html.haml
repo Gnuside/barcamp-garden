@@ -48,9 +48,10 @@
 					.well.sidebar-nav
 						%ul.nav.nav-list
 							%li.nav-header Navigation
-							%li= link_to "Home", "/home"
+							%li= link_to "Home", root_url
+							%li= link_to "(Events)", events_path
 							%li= link_to "Guest list", "/guestlist"
-							%li= link_to "Schedule", "/schedule"
+							/ %li= link_to "Schedule", sessions_path
 							%li= link_to "Media stream", "/mediastream"
 
 					.well.sidebar-nav
