@@ -4,8 +4,6 @@ BarcampGarden::Application.routes.draw do
 
   resources :slots
 
-  mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
-
   resources :events
 
   resources :authentications
@@ -13,6 +11,8 @@ BarcampGarden::Application.routes.draw do
   devise_for :users
 
   match '/auth/:provider/callback' => 'authentications#create'  
+
+  mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
