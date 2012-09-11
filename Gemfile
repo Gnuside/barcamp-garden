@@ -46,6 +46,9 @@ gem 'rails_admin'
 # Static pages
 gem "high_voltage", "~> 1.2.0"
 
+# Interactive thing for rake
+gem "highline"
+
 
 # Etherpad-lite API
 gem "etherpad-lite"
