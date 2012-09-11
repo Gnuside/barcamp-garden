@@ -63,7 +63,8 @@ BarcampGarden::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'high_voltage/pages#show', :id => 'index'
+  #root :to => 'high_voltage/pages#show', :id => 'index'
+  root :to => 'events#featured'
 
   # See how all your routes lay out with "rake routes"
 
