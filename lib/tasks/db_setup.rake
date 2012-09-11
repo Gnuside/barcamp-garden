@@ -11,9 +11,9 @@ namespace :db do
         :password => "admin", 
         :password_confirmation => "admin"
         )
-      admin.activated_at = 5.days.ago
-      admin.activation_code = nil
-      admin.save false
+      #admin.activated_at = 5.days.ago
+      #admin.activation_code = nil
+      admin.save :validate => false
     end  
     
     desc "Create user accounts with rake, prompting for user name and password."
