@@ -2,6 +2,9 @@
 # See github.com/sferik/rails_admin for more informations
 
 RailsAdmin.config do |config|
+  config.authorize_with :cancan, AdminAbility
+  can :access, :rails_admin   # grant access to rails_admin
+  can :dashboard              # grant access to the dashboard
 
   # If your default_local is different from :en, uncomment the following 2 lines and set your default locale here:
   # require 'i18n'
@@ -140,3 +143,4 @@ RailsAdmin.config do |config|
   #   update do; end
   # end
 end
+
