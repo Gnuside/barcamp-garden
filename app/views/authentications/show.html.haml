@@ -1,0 +1,24 @@
+%p#notice= notice
+
+%p
+  %b User:
+  = @authentication.user_id
+%p
+  %b Provider:
+  = @authentication.provider
+%p
+  %b Uid:
+  = @authentication.uid
+%p
+  %b Index:
+  = @authentication.index
+%p
+  %b Create:
+  = @authentication.create
+%p
+  %b Destroy:
+  = @authentication.destroy
+
+= link_to 'Edit', edit_authentication_path(@authentication)
+\|
+= link_to 'Back', authentications_path
