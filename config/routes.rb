@@ -10,6 +10,8 @@ BarcampGarden::Application.routes.draw do
 
   devise_for :users
 
+  match '/schedule' => 'events#show_schedule'
+
   match '/auth/:provider/callback' => 'authentications#create'  
 
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
@@ -64,7 +66,7 @@ BarcampGarden::Application.routes.draw do
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
   #root :to => 'high_voltage/pages#show', :id => 'index'
-  root :to => 'events#featured'
+  root :to => 'events#show_featured'
 
   # See how all your routes lay out with "rake routes"
 

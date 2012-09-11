@@ -1,0 +1,16 @@
+%h1= @event.title
+%h2 Schedule
+
+%div
+	%table
+		%th
+			%td Slots \ Rooms
+			%td= link_to "Add room", :action => "add_room"
+		%tr
+			%td= link_to "Add room", :action => "add_slot"
+
+	Rooms: 
+	= @rooms.size
+
+	Slots: 
+	= @rooms.size

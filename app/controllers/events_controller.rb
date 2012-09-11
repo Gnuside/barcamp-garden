@@ -10,8 +10,11 @@ class EventsController < ApplicationController
     end
   end
 
-  def featured
-    @event = Event.first
+
+  # GET /events/1
+  # GET /events/1.json
+  def show
+    @event = Event.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -19,10 +22,31 @@ class EventsController < ApplicationController
     end
   end
 
-  # GET /events/1
-  # GET /events/1.json
-  def show
-    @event = Event.find(params[:id])
+  def show_featured_missing
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @event }
+    end
+  end
+
+  def show_featured
+    @event = Event.first
+	redirect_to :action => "show_featured_missing" if @event.nil?
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @event }
+    end
+  end
+
+  def show_schedule
+    @event = Event.first
+	require 'pp'
+	pp @event
+	redirect_to :action => "show_featured_missing" if @event.nil?
+
+	@rooms = @event.rooms
+	@slots = @event.slots
 
     respond_to do |format|
       format.html # show.html.erb

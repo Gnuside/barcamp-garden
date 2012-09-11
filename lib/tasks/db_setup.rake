@@ -2,20 +2,31 @@ require 'bundler/setup'
 
 namespace :db do
 	namespace :setup do
+
+		desc "create all default content"
+		task :all => [:admin, :event]
+
+
+		desc "create default event"
+		task :event => :environment do
+			event = Event.create()
+			event.save :validate => false
+		end
+
 		desc "create default admin user"
 		task :admin => :environment do
 			admin = User.create(
-				#:login => "admin", 
-				#:name => "My Admin", 
-				:email => "admin@example.com", 
-				:password => "admin", 
+				#:login => "admin",
+				#:name => "My Admin",
+				:email => "admin@example.com",
+				:password => "admin",
 				:password_confirmation => "admin"
 			)
 			#admin.activated_at = 5.days.ago
 			#admin.activation_code = nil
 			admin.admin = true
 			admin.save :validate => false
-		end  
+		end
 
 		desc "Create user accounts with rake, prompting for user name and password."
 		task :user => :environment do
@@ -27,7 +38,7 @@ namespace :db do
 			confirm  = ui.ask("Confirm password: ") { |q| q.echo = false }
 
 			user = User.new(:name => name, :email => email, :login => login, :password => password, :password_confirmation => confirm)
-			if user.save false
+			if user.save :validate => false
 				puts "User account '#{login}' created."
 			else
 				puts
