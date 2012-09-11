@@ -4,7 +4,9 @@ require 'bundler/setup'
 
 require 'etherpad-lite'
 
-APIKEY="cKFNXvEqW04fxOpbwguNYXs03CwdAaa9"
+APIKEY = File.read("/usr/share/etherpad-lite/APIKEY.txt")
+
+#APIKEY="cKFNXvEqW04fxOpbwguNYXs03CwdAaa9"
 
 # Connect to your Etherpad Lite instance
 ether = EtherpadLite.connect('http://localhost:9001', APIKEY)
