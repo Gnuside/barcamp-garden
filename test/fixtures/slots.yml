@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  dtstart: 2012-09-11 21:42:24
+  dtend: 2012-09-11 21:42:24
+  event: 
+
+two:
+  dtstart: 2012-09-11 21:42:24
+  dtend: 2012-09-11 21:42:24
+  event: 

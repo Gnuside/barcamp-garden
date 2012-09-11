@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Dtstart:
+  = @slot.dtstart
+%p
+  %b Dtend:
+  = @slot.dtend
+%p
+  %b Event:
+  = @slot.event
+
+= link_to 'Edit', edit_slot_path(@slot)
+\|
+= link_to 'Back', slots_path

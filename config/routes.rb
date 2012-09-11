@@ -1,5 +1,7 @@
 BarcampGarden::Application.routes.draw do
 
+  resources :slots
+
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
   resources :events
