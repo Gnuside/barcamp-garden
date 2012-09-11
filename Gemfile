@@ -27,11 +27,18 @@ gem 'haml-rails', "~> 0.3.5", :group => :development
 
 # User management
 gem "devise"
+
+# Auth via social media
 gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'
 #gem 'omniauth-linkedin'
 #gem 'omniauth-google'
+
+
+# Admin pages
+gem 'rails_admin'
+
 
 # Static pages
 gem "high_voltage", "~> 1.2.0"

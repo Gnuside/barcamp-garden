@@ -15,3 +15,5 @@ https://developers.facebook.com/apps/267956699982721/summary?save=1
 Social media
 http://i4p.readthedocs.org/en/develop/index.html
 
+Rails Admin
+https://github.com/sferik/rails_admin/wiki
