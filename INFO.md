@@ -17,3 +17,7 @@ http://i4p.readthedocs.org/en/develop/index.html
 
 Rails Admin
 https://github.com/sferik/rails_admin/wiki
+
+CanCan
+https://github.com/ryanb/cancan
+

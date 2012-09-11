@@ -35,6 +35,8 @@ gem 'omniauth-facebook'
 #gem 'omniauth-linkedin'
 #gem 'omniauth-google'
 
+# Authorisations
+gem 'cancan'
 
 # Admin pages
 gem 'rails_admin'
