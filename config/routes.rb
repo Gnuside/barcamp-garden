@@ -1,18 +1,28 @@
 BarcampGarden::Application.routes.draw do
 
-  resources :rooms
 
-  resources :slots
+  match '/events/featured_schedule' => 'events#show_featured_schedule', 
+	  :via => [:get],
+	  :as => :featured_schedule
 
-  match '/events/featured_missing' => 'events#show_featured_missing'
+  match '/events/:id/schedule' => 'events#show_schedule', 
+	  :via => [:get],
+	  :as => :event_schedule
 
-  resources :events
+  match '/events/featured_missing' => 'events#show_featured_missing', 
+	  :via => [:get],
+	  :as => :featured_missing
+
+  resources :events do
+	  resources :rooms
+	  resources :slots
+  end
 
   resources :authentications
 
   devise_for :users
 
-  match '/schedule' => 'events#show_schedule'
+  match '/schedule' => 'events#show_featured_schedule'
 
   match '/auth/:provider/callback' => 'authentications#create'  
 

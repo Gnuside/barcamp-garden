@@ -1,83 +1,88 @@
 class RoomsController < ApplicationController
-  # GET /rooms
-  # GET /rooms.json
-  def index
-    @rooms = Room.all
+	# GET /events/:id/rooms
+	def index
+		@event = Event.find(params[:event_id])
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @rooms }
-    end
-  end
+		@rooms = @event.rooms
 
-  # GET /rooms/1
-  # GET /rooms/1.json
-  def show
-    @room = Room.find(params[:id])
+		respond_to do |format|
+			format.html # show.html.erb
+			format.json { render json: @rooms }
+		end
+	end
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @room }
-    end
-  end
 
-  # GET /rooms/new
-  # GET /rooms/new.json
-  def new
-    @room = Room.new
+	# GET /events/:id/rooms/1
+	# GET /rooms/1.json
+	def show
+		@event = Event.find(params[:event_id])
+		@room = @event.rooms.find(params[:id])
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @room }
-    end
-  end
+		respond_to do |format|
+			format.html # show.html.erb
+			format.json { render json: @room }
+		end
+	end
 
-  # GET /rooms/1/edit
-  def edit
-    @room = Room.find(params[:id])
-  end
 
-  # POST /rooms
-  # POST /rooms.json
-  def create
-    @room = Room.new(params[:room])
+	# GET /rooms/new
+	# GET /rooms/new.json
+	def new
+		@event = Event.find(params[:event_id])
+		@room = @event.rooms.new
 
-    respond_to do |format|
-      if @room.save
-        format.html { redirect_to @room, notice: 'Room was successfully created.' }
-        format.json { render json: @room, status: :created, location: @room }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @room.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+		respond_to do |format|
+			format.html # new.html.erb
+			format.json { render json: @room }
+		end
+	end
 
-  # PUT /rooms/1
-  # PUT /rooms/1.json
-  def update
-    @room = Room.find(params[:id])
 
-    respond_to do |format|
-      if @room.update_attributes(params[:room])
-        format.html { redirect_to @room, notice: 'Room was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @room.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+	# GET /rooms/1/edit
+	def edit
+		@event = Event.find(params[:event_id])
+		@room = @event.rooms.find(params[:id])
+	end
 
-  # DELETE /rooms/1
-  # DELETE /rooms/1.json
-  def destroy
-    @room = Room.find(params[:id])
-    @room.destroy
 
-    respond_to do |format|
-      format.html { redirect_to rooms_url }
-      format.json { head :no_content }
-    end
-  end
+	# POST /rooms
+	# POST /rooms.json
+	def create
+		@event = Event.find(params[:event_id])
+		@room = @event.rooms.new(params[:room])
+
+		if @room.save
+			redirect_to event_room_url(@event,@room), 
+				notice: 'Room was successfully created.'
+		else
+			render action: "new"
+		end
+	end
+
+	# PUT /rooms/1
+	# PUT /rooms/1.json
+	def update
+		@event = Event.find(params[:event_id])
+		@room = @event.rooms.find(params[:id])
+
+		if @room.update_attributes(params[:room])
+			redirect_to event_room_url(@event,@room), 
+				notice: 'Room was successfully updated.'
+		else
+			render action: "edit"
+		end
+	end
+
+	# DELETE /rooms/1
+	# DELETE /rooms/1.json
+	def destroy
+		@event = Event.find(params[:event_id])
+		@room = @event.rooms.find(params[:id])
+		@room.destroy
+
+		respond_to do |format|
+			format.html { redirect_to rooms_url }
+			format.json { head :no_content }
+		end
+	end
 end

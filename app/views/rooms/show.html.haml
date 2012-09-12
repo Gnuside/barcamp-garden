@@ -5,8 +5,8 @@
   = @room.name
 %p
   %b Event:
-  = @room.event
+  = @room.event.title
 
 = link_to 'Edit', edit_room_path(@room)
 \|
-= link_to 'Back', rooms_path
+= link_to 'Back', event_rooms_path(@event)

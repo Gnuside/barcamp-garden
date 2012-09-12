@@ -1,9 +1,9 @@
-%h1 Listing rooms
+%h1= @event.title
+%h2 Listing rooms
 
 %table
   %tr
     %th Name
-    %th Event
     %th
     %th
     %th
@@ -11,11 +11,10 @@
   - @rooms.each do |room|
     %tr
       %td= room.name
-      %td= room.event
-      %td= link_to 'Show', room
-      %td= link_to 'Edit', edit_room_path(room)
+      %td= link_to 'Show', event_rooms_path(@event, room)
+      %td= link_to 'Edit', edit_event_room_path(@event, room)
       %td= link_to 'Destroy', room, method: :delete, data: { confirm: 'Are you sure?' }
 
 %br
 
-= link_to 'New Room', new_room_path
+= link_to 'New Room', new_event_room_path(@event)

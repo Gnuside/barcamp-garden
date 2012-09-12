@@ -2,12 +2,19 @@
 %h2 Schedule
 
 %div
-	%table
-		%th
-			%td Slots \ Rooms
-			%td= link_to "Add room", :action => "add_room"
+	%table.session-table
 		%tr
-			%td= link_to "Add room", :action => "add_slot"
+			%th Slots \ Rooms
+			- @rooms.each do |room|
+				%th= room.name
+			%th= link_to "Add room", new_event_room_path(@event)
+		%tr
+			- @slots.each do |slot|
+				%th= slot.dtstart
+				- @rooms.each do
+					%td FIXME: CREATE ETHERPAD
+			%th FIXME: ADD SLOT
+			/ %td= link_to "Add room", :action => "add_slot"
 
 	Rooms: 
 	= @rooms.size

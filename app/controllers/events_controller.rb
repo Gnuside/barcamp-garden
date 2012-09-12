@@ -41,11 +41,20 @@ class EventsController < ApplicationController
 	redirect_to :action => "show", :id => @event.id
   end
 
-  def show_schedule
+  def show_featured_schedule
     @event = Event.first
-	require 'pp'
-	pp @event
-	redirect_to :action => "show_featured_missing" if @event.nil?
+	if @event.nil? then
+		redirect_to :action => "show_featured_missing"
+		return
+	end
+
+	redirect_to :action => "show_schedule", :id => @event.id
+  end
+
+
+  # GET /events/:id/schedule
+  def show_schedule
+    @event = Event.find(params[:id])
 
 	@rooms = @event.rooms
 	@slots = @event.slots
@@ -55,6 +64,7 @@ class EventsController < ApplicationController
       format.json { render json: @event }
     end
   end
+
 
   # GET /events/new
   # GET /events/new.json
