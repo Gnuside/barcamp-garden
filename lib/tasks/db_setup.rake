@@ -1,4 +1,5 @@
 require 'bundler/setup'
+require 'pp'
 
 namespace :db do
 	namespace :setup do
@@ -15,6 +16,14 @@ namespace :db do
 
 		desc "create default admin user"
 		task :admin => :environment do
+			oldadmin = User.where(:email => "admin@example.com")
+
+			unless oldadmin.nil? then
+				STDERR.puts "Initial admin already exists. Skipping..."
+				pp oldadmin
+				next
+			end
+
 			admin = User.create(
 				#:login => "admin",
 				#:name => "My Admin",
