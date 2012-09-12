@@ -22,3 +22,14 @@ After :
 * summarize the event with media, attendees, reports, etc.
 
 
+Setup
+-----
+
+Install all required dependencies
+
+  bundle install --path vendor/bundle
+
+  rake db:migrate
+  rake db:setup:admin
+
+
