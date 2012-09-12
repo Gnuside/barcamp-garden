@@ -46,16 +46,21 @@ while($running) do
 				# first is newest, last is oldest
 				results = flickr.photos.search(:tags => event.slug)
 				results.each do |picture|
-					#info = flickr.photos.getInfo(:photo_id => result.id)  
+					# info = flickr.photos.getInfo(:photo_id => result.id)  
+					# url = FlickRaw.url_b(info)  
 					url = FlickRaw.url_b picture
 					pp picture
 					pp url
 
 					media = RemoteMedia.new
 					media.platform = 'flickr'
-					#media.remote_id
+					media.description = picture.title
+					media.url = url
+					media.author = picture.owner
+					media.remote_id = picture.id
+					res = media.save
+					pp res
 				end
-				#url = FlickRaw.url_b(info)  
 			end
 
 	rescue Exception => e
