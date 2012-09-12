@@ -4,10 +4,26 @@
 
 .session-table {
     width: 100%;
-    border: 1px solid transparent;
     border-collapse: collapse;
 
+    tr:first-child th,
+    tr:first-child td { border-top: none; }
+
+    th:first-child,
+    td:first-child {
+	border-left: none;
+    }
+
+    th:last-child,
+    td:last-child {
+	border-right: none;
+    }
+
+    tr:last-child th,
+    tr:last-child td { border-bottom: none; }
+
     td,th {
-	border: 1px solid black;
+	border: 1px dashed #ccc;
+	text-align: center;
     }
 }

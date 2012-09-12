@@ -7,14 +7,14 @@
 			%th Slots \ Rooms
 			- @rooms.each do |room|
 				%th= room.name
-			%th= link_to "Add room", new_event_room_path(@event)
+			%td= link_to "Add room", new_event_room_path(@event), :class => 'btn small'
 		%tr
 			- @slots.each do |slot|
 				%th= slot.dtstart
 				- @rooms.each do
 					%td FIXME: CREATE ETHERPAD
-			%th FIXME: ADD SLOT
-			/ %td= link_to "Add room", :action => "add_slot"
+		%tr
+			%td= link_to "Add slot", new_event_slot_path(@event), :class => 'btn small'
 
 	Rooms: 
 	= @rooms.size
