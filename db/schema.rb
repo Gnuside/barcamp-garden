@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(:version => 20120912194719) do
     t.string   "url"
     t.string   "description"
     t.string   "author"
+    t.integer  "event_id",    :null => false
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end

@@ -6,6 +6,7 @@ class CreateRemoteMedia < ActiveRecord::Migration
       t.string :url
       t.string :description
       t.string :author
+      t.references :event, :null => false
 
       t.timestamps
     end
