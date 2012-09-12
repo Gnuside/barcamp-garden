@@ -41,34 +41,40 @@
 									or
 									= link_to "Sign In", "/users/sign_in"
 
-	.container
-		.content
-			.row
-				.span3
-					.well.sidebar-nav
-						%ul.nav.nav-list
-							%li.nav-header Navigation
-							%li= link_to "Home", root_url
-							%li= link_to "Guest list", "/guestlist"
-							%li= link_to "Schedule", "/schedule"
-							%li= link_to "Media stream", "/mediastream"
+	#wrapper
+		.container
+			.content
+				.row
+					.span3
+						.well.sidebar-nav
+							%ul.nav.nav-list
+								%li.nav-header Navigation
+								%li= link_to "Home", root_url
+								/ %li= link_to "Guest list", "/guestlist"
+								%li= link_to "Schedule", "/schedule"
+								%li= link_to "Media stream", "/mediastream"
 
-					.well.sidebar-nav
-						%ul.nav.nav-list
-							%li.nav-header Special features
-							%li= link_to "Documents", "#"
-							%li= link_to "References", "#"
+						.well.sidebar-nav
+							%ul.nav.nav-list
+								%li.nav-header Special features
+								%li= link_to "Documents", "#"
+								%li= link_to "References", "#"
 
-				.span9
-					= bootstrap_flash
-					= yield
+					.span9
+						= bootstrap_flash
+						= yield
+		#pusher
 
 	#footer.container
 		%footer
 			%p 
+				Powered by
 				%a(href="https://github.com/Gnuside/barcamp-garden") Barcamp Garden 
 				&copy; 
 				%a(href="http://www.gnuside.com") Gnuside 2012
+				%br/
+				%a(href="https://github.com/Gnuside/barcamp-garden") Barcamp Garden 
+				is free software released under the GNU/AGPL.
 	/
 		Javascripts
 		\==================================================

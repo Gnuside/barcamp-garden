@@ -12,6 +12,11 @@
  *= require_tree .
  */
 
+* {margin:0;padding:0;} 
+
+$sizeFooterHeight: 20px;
+
+
 #footer {
     width: 100%;
     border-top: 1px solid #ddd;
@@ -20,5 +25,35 @@
 	margin: 1em;
 	text-align: center;
     }
+}
+
+html, body {
+    margin: 0;
+    height: 100%;
+}
+
+#wrapper {
+    margin: 0;
+    min-height: 100%;
+    margin: 0 auto (-1 * $sizeFooterHeight); /* the bottom margin is the negative value of the footer's height */
+
+    & > .container {
+	padding-top: 60px;
+    }
+
+    #pusher {
+	margin: 0;
+	clear: both;
+	height: $sizeFooterHeight;
+    }
+}
+
+
+#footer {
+    position: relative;
+    margin: 0;
+    margin-top: -($sizeFooterHeight + 60px);
+    clear: both;
+    height: $sizeFooterHeight; 
 }
 
