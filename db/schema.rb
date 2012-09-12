@@ -55,6 +55,8 @@ ActiveRecord::Schema.define(:version => 20120912194719) do
     t.datetime "updated_at",  :null => false
   end
 
+  add_index "remote_media", ["platform", "remote_id"], :name => "index_remote_media_on_platform_and_remote_id", :unique => true
+
   create_table "rooms", :force => true do |t|
     t.string   "name"
     t.integer  "event_id",   :null => false

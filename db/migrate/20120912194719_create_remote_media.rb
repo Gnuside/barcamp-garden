@@ -9,5 +9,6 @@ class CreateRemoteMedia < ActiveRecord::Migration
 
       t.timestamps
     end
+	add_index :remote_media, [:platform, :remote_id], :unique => true
   end
 end
