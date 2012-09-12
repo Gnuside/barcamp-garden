@@ -22,7 +22,12 @@
 				- @rooms.each do |room|
 					%td 
 						- if room.workshops.where(:slot_id => slot.id,:room_id=>room.id).empty?
-							= link_to "Create workshop", new_event_workshop_path(@event,:room_id=>room.id,:slot_id=>slot.id)
+							- if current_user && current_user.admin? then
+								= link_to "Create workshop", 
+									new_event_workshop_path(@event,:room_id=>room.id,:slot_id=>slot.id),
+									:class => 'btn small'
+							- else
+								No workshop (yet!)
 						- else
 							= link_to "Show workshop", File.join(ETHERPAD_URL,'p',"#{@event.slug}_#{room.name}_#{slot.id}")
 		- if current_user && current_user.admin? then

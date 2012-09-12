@@ -10,6 +10,6 @@
   %b Slug:
   = @workshop.slug
 
-= link_to 'Edit', edit_workshop_path(@workshop)
+= link_to 'Edit', edit_event_workshop_path(@event,@workshop)
 \|
-= link_to 'Back', workshops_path
+= link_to 'Back', event_workshops_path(@event)

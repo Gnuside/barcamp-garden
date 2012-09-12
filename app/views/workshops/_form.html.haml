@@ -15,7 +15,7 @@
 	.field
 		= f.label :description
 		= f.text_area :description
-		= f.hidden_field :room_id, :value => @room_id
-		= f.hidden_field :slot_id, :value => @slot_id
+		= f.hidden_field :room_id, :value => @workshop.room_id
+		= f.hidden_field :slot_id, :value => @workshop.slot_id
 	.actions
 		= f.submit 'Save'
