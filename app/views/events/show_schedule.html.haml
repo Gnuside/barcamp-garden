@@ -12,8 +12,8 @@
 		- @slots.each do |slot|
 			%tr
 				%th= slot.dtstart
-				- @rooms.each do
-					%td FIXME: CREATE ETHERPAD
+				- @rooms.each do |room|
+					%td= link_to "Etherpad", File.join(ETHERPAD_URL,'p',"#{@event.slug}_#{room.name}_#{slot.id}")
 		- if current_user && current_user.admin? then
 			%tr
 				%td= link_to "Add slot", new_event_slot_path(@event), :class => 'btn small'
