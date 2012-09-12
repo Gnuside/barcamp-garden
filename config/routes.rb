@@ -1,6 +1,8 @@
 BarcampGarden::Application.routes.draw do
 
 
+  resources :sessions
+
   match '/events/featured_schedule' => 'events#show_featured_schedule', 
 	  :via => [:get],
 	  :as => :featured_schedule

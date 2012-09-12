@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Title:
+  = @session.title
+%p
+  %b Description:
+  = @session.description
+%p
+  %b Slug:
+  = @session.slug
+
+= link_to 'Edit', edit_session_path(@session)
+\|
+= link_to 'Back', sessions_path
