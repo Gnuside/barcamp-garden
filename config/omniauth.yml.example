@@ -6,3 +6,6 @@
     :app_id: xxxxxx
     :app_secret: xxxxx
 
+:flickr:
+    :api_key: xxxxx
+    :shared_secret: xxx

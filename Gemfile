@@ -49,6 +49,9 @@ gem "high_voltage", "~> 1.2.0"
 # Interactive thing for rake
 gem "highline"
 
+# Flickr API
+gem "flickraw"
+gem "launchy"
 
 # Etherpad-lite API
 gem "etherpad-lite"
