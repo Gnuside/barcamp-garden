@@ -30,7 +30,9 @@
 							- else
 								No workshop (yet!)
 						- else
-							= link_to "#{workshop.title} ##{workshop.slug}", File.join(ETHERPAD_URL,'p',"#{@event.slug}_#{workshop.slug}")
+							= link_to "#{workshop.title} ##{workshop.slug}",
+								File.join(ETHERPAD_URL,'p',"#{@event.slug}_#{workshop.slug}"), 
+								:target => "_blank"
 		- if current_user && current_user.admin? then
 			%tr
 				%td= link_to "Add slot", new_event_slot_path(@event), :class => 'btn small'

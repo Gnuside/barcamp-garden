@@ -37,6 +37,7 @@ class WorkshopsController < ApplicationController
 		@workshop = @event.workshops.new(params[:workshop])
 
 		if @workshop.save
+			# FIXME: create etherpad text with workshop description
 			redirect_to event_schedule_url(@event), 
 				notice: 'Room was successfully created.'
 		else
