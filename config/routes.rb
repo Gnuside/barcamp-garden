@@ -28,6 +28,8 @@ BarcampGarden::Application.routes.draw do
 
   devise_for :users
 
+  match '/mediastream' => 'remote_media#index'
+
   match '/schedule' => 'events#show_featured_schedule'
 
   match '/auth/:provider/callback' => 'authentications#create'  
