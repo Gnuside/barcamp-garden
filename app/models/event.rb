@@ -4,5 +4,5 @@ class Event < ActiveRecord::Base
   has_many :slots, :dependent => :destroy
   has_many :rooms, :dependent => :destroy
   has_many :workshops, :dependent => :destroy
-  has_many :remote_medias, :dependent => :destroy
+  has_many :remote_media, :dependent => :destroy
 end

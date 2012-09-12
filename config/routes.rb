@@ -12,6 +12,12 @@ BarcampGarden::Application.routes.draw do
 	  :via => [:get],
 	  :as => :featured_missing
 
+  match '/mediastream' => 'events#show_featured_remote_media',
+	  :via => [:get],
+	  :as => :featured_media
+
+  match '/schedule' => 'events#show_featured_schedule'
+
   resources :events do
 	  resources :rooms
 	  resources :slots
@@ -22,10 +28,6 @@ BarcampGarden::Application.routes.draw do
   resources :authentications
 
   devise_for :users
-
-  match '/mediastream' => 'remote_media#index'
-
-  match '/schedule' => 'events#show_featured_schedule'
 
   match '/auth/:provider/callback' => 'authentications#create'  
 
