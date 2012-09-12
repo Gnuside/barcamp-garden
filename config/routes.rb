@@ -2,6 +2,10 @@ BarcampGarden::Application.routes.draw do
 
 
 
+  get "remote_media/index"
+
+  get "remote_media/show"
+
   match '/events/featured_schedule' => 'events#show_featured_schedule', 
 	  :via => [:get],
 	  :as => :featured_schedule

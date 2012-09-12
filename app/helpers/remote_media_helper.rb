@@ -1,0 +1,2 @@
+module RemoteMediaHelper
+end
