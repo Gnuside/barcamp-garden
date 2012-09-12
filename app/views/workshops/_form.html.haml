@@ -1,19 +1,21 @@
-= form_for @workshop do |f|
-  - if @workshop.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@workshop.errors.count, "error")} prohibited this workshop from being saved:"
-      %ul
-        - @workshop.errors.full_messages.each do |msg|
-          %li= msg
+= form_for([@event,@workshop]) do |f|
+	- if @workshop.errors.any?
+		#error_explanation
+			%h2= "#{pluralize(@workshop.errors.count, "error")} prohibited this workshop from being saved:"
+			%ul
+				- @workshop.errors.full_messages.each do |msg|
+					%li= msg
 
-  .field
-    = f.label :title
-    = f.text_field :title
-  .field
-    = f.label :description
-    = f.text_field :description
-  .field
-    = f.label :slug
-    = f.text_field :slug
-  .actions
-    = f.submit 'Save'
+	.field
+		= f.label :title
+		= f.text_field :title
+	.field
+		= f.label :slug
+		= f.text_field :slug
+	.field
+		= f.label :description
+		= f.text_area :description
+		= f.hidden_field :room_id, :value => @room_id
+		= f.hidden_field :slot_id, :value => @slot_id
+	.actions
+		= f.submit 'Save'

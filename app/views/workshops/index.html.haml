@@ -1,4 +1,5 @@
-%h1 Listing workshops
+%h1= @event.title
+%h2 Listing workshops
 
 %table
   %tr
@@ -15,9 +16,9 @@
       %td= workshop.description
       %td= workshop.slug
       %td= link_to 'Show', workshop
-      %td= link_to 'Edit', edit_workshop_path(workshop)
+      %td= link_to 'Edit', edit_event_workshop_path(@event,workshop)
       %td= link_to 'Destroy', workshop, method: :delete, data: { confirm: 'Are you sure?' }
 
 %br
 
-= link_to 'New Session', new_workshop_path
+= link_to 'New workshop', new_event_workshop_path

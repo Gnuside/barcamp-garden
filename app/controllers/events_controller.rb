@@ -59,6 +59,7 @@ class EventsController < ApplicationController
 
 	@rooms = @event.rooms
 	@slots = @event.slots
+	@workshops = @event.workshops
   end
 
 

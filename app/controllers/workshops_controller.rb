@@ -1,83 +1,70 @@
-class SessionsController < ApplicationController
-  # GET /workshops
-  # GET /workshops.json
-  def index
-    @workshops = Session.all
+class WorkshopsController < ApplicationController
+	# GET /events/:id/workshops
+	def index
+		@event = Event.find(params[:event_id])
+		@workshops = @event.workshops
+	end
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @workshops }
-    end
-  end
 
-  # GET /workshops/1
-  # GET /workshops/1.json
-  def show
-    @workshop = Session.find(params[:id])
+	# GET /events/:event_id/workshops/:id
+	def show
+		@event = Event.find(params[:event_id])
+		@workshop = @event.workshops.find(params[:id])
+	end
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @workshop }
-    end
-  end
 
-  # GET /workshops/new
-  # GET /workshops/new.json
-  def new
-    @workshop = Session.new
+	# GET /events/:event_id/workshops/new
+	def new
+		@event = Event.find(params[:event_id])
+		@workshop = @event.workshops.new
+		@workshop.room_id = params[:room_id]
+		@workshop.slot_id = params[:slot_id]
+	end
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @workshop }
-    end
-  end
 
-  # GET /workshops/1/edit
-  def edit
-    @workshop = Session.find(params[:id])
-  end
+	# GET /events/:event_id/workshops/1/edit
+	def edit
+		@event = Event.find(params[:event_id])
+		@workshop = @event.workshops.find(params[:id])
+	end
 
-  # POST /workshops
-  # POST /workshops.json
-  def create
-    @workshop = Session.new(params[:workshop])
 
-    respond_to do |format|
-      if @workshop.save
-        format.html { redirect_to @workshop, notice: 'Session was successfully created.' }
-        format.json { render json: @workshop, status: :created, location: @workshop }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @workshop.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+	# POST /events/:event_id/workshops
+	def create
+		require 'pp'
+		pp params
+		@event = Event.find(params[:event_id])
+		@workshop = @event.workshops.new(params[:workshop])
 
-  # PUT /workshops/1
-  # PUT /workshops/1.json
-  def update
-    @workshop = Session.find(params[:id])
+		if @workshop.save
+			redirect_to event_workshop_url(@event,@workshop), 
+				notice: 'Room was successfully created.'
+		else
+			render action: "new"
+		end
+	end
 
-    respond_to do |format|
-      if @workshop.update_attributes(params[:workshop])
-        format.html { redirect_to @workshop, notice: 'Session was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @workshop.errors, status: :unprocessable_entity }
-      end
-    end
-  end
 
-  # DELETE /workshops/1
-  # DELETE /workshops/1.json
-  def destroy
-    @workshop = Session.find(params[:id])
-    @workshop.destroy
+	# PUT /events/:event_id/workshops/1
+	def update
+		@event = Event.find(params[:event_id])
+		@workshop = @event.workshops.find(params[:id])
 
-    respond_to do |format|
-      format.html { redirect_to workshops_url }
-      format.json { head :no_content }
-    end
-  end
+		if @workshop.update_attributes(params[:workshop])
+			redirect_to event_workshop_url(@event,@workshop), 
+				notice: 'Room was successfully updated.'
+		else
+			render action: "edit"
+		end
+	end
+
+
+	# DELETE /events/:event_id/workshops/:id
+	def destroy
+		@event = Event.find(params[:event_id])
+		@workshop = @event.workshops.find(params[:id])
+		@workshop.destroy
+
+		redirect_to event_workshops_url
+	end
 end

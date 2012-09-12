@@ -6,7 +6,10 @@
 		%tr
 			%th.desc Slots \ Rooms
 			- @rooms.each do |room|
-				%th= room.name
+				%th 
+					= room.name
+					- if current_user && current_user.admin? then
+						= link_to "", event_room_path(@event,room), :method => :delete, :class => 'btn small icon-remove'
 			- if current_user && current_user.admin? then
 				%td= link_to "Add room", new_event_room_path(@event), :class => 'btn small'
 		- @slots.each do |slot|
@@ -17,7 +20,11 @@
 						= link_to "", event_slot_path(@event,slot), :method => :delete, :class => 'btn small icon-remove'
 
 				- @rooms.each do |room|
-					%td= link_to "Etherpad", File.join(ETHERPAD_URL,'p',"#{@event.slug}_#{room.name}_#{slot.id}")
+					%td 
+						- if room.workshops.where(:slot_id => slot.id,:room_id=>room.id).empty?
+							= link_to "Create workshop", new_event_workshop_path(@event,:room_id=>room.id,:slot_id=>slot.id)
+						- else
+							= link_to "Show workshop", File.join(ETHERPAD_URL,'p',"#{@event.slug}_#{room.name}_#{slot.id}")
 		- if current_user && current_user.admin? then
 			%tr
 				%td= link_to "Add slot", new_event_slot_path(@event), :class => 'btn small'
