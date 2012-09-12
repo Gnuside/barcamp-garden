@@ -50,7 +50,8 @@ gem "high_voltage", "~> 1.2.0"
 gem "highline"
 
 # Flickr API
-gem "flickraw"
+#gem "flickraw"
+gem 'flickraw-cached'
 gem "launchy"
 
 # Etherpad-lite API
