@@ -64,6 +64,8 @@ gem 'jquery-rails'
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'
 
+gem "daemons-rails"
+
 # Use unicorn as the app server
 gem 'unicorn', "~> 4.3.1"
 

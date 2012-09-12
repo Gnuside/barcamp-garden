@@ -24,6 +24,9 @@ https://github.com/sferik/rails_admin/wiki
 CanCan
 https://github.com/ryanb/cancan
 
+Daemons
+http://railscasts.com/episodes/129-custom-daemon
+
 Flickraw
 https://github.com/hanklords/flickraw
 
