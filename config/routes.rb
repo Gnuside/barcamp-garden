@@ -4,6 +4,8 @@ BarcampGarden::Application.routes.draw do
 
   resources :slots
 
+  match '/events/featured_missing' => 'events#show_featured_missing'
+
   resources :events
 
   resources :authentications

@@ -22,6 +22,7 @@ class EventsController < ApplicationController
     end
   end
 
+
   def show_featured_missing
     respond_to do |format|
       format.html # show.html.erb
@@ -29,14 +30,15 @@ class EventsController < ApplicationController
     end
   end
 
+
   def show_featured
     @event = Event.first
-	redirect_to :action => "show_featured_missing" if @event.nil?
+	if @event.nil? then
+		redirect_to :action => "show_featured_missing"
+		return
+	end
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @event }
-    end
+	redirect_to :action => "show", :id => @event.id
   end
 
   def show_schedule
