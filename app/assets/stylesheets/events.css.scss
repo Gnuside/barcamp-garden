@@ -6,6 +6,10 @@
     width: 100%;
     border-collapse: collapse;
 
+    .desc {
+	color: #ccc;
+    }
+
     tr:first-child th,
     tr:first-child td { border-top: none; }
 

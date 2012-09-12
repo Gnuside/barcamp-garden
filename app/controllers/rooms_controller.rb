@@ -2,51 +2,32 @@ class RoomsController < ApplicationController
 	# GET /events/:id/rooms
 	def index
 		@event = Event.find(params[:event_id])
-
 		@rooms = @event.rooms
-
-		respond_to do |format|
-			format.html # show.html.erb
-			format.json { render json: @rooms }
-		end
 	end
 
 
-	# GET /events/:id/rooms/1
-	# GET /rooms/1.json
+	# GET /events/:event_id/rooms/:id
 	def show
 		@event = Event.find(params[:event_id])
 		@room = @event.rooms.find(params[:id])
-
-		respond_to do |format|
-			format.html # show.html.erb
-			format.json { render json: @room }
-		end
 	end
 
 
-	# GET /rooms/new
-	# GET /rooms/new.json
+	# GET /events/:event_id/rooms/new
 	def new
 		@event = Event.find(params[:event_id])
 		@room = @event.rooms.new
-
-		respond_to do |format|
-			format.html # new.html.erb
-			format.json { render json: @room }
-		end
 	end
 
 
-	# GET /rooms/1/edit
+	# GET /events/:event_id/rooms/1/edit
 	def edit
 		@event = Event.find(params[:event_id])
 		@room = @event.rooms.find(params[:id])
 	end
 
 
-	# POST /rooms
-	# POST /rooms.json
+	# POST /events/:event_id/rooms
 	def create
 		@event = Event.find(params[:event_id])
 		@room = @event.rooms.new(params[:room])
@@ -59,8 +40,8 @@ class RoomsController < ApplicationController
 		end
 	end
 
-	# PUT /rooms/1
-	# PUT /rooms/1.json
+
+	# PUT /events/:event_id/rooms/1
 	def update
 		@event = Event.find(params[:event_id])
 		@room = @event.rooms.find(params[:id])
@@ -73,16 +54,13 @@ class RoomsController < ApplicationController
 		end
 	end
 
-	# DELETE /rooms/1
-	# DELETE /rooms/1.json
+
+	# DELETE /events/:event_id/rooms/:id
 	def destroy
 		@event = Event.find(params[:event_id])
 		@room = @event.rooms.find(params[:id])
 		@room.destroy
 
-		respond_to do |format|
-			format.html { redirect_to rooms_url }
-			format.json { head :no_content }
-		end
+		redirect_to rooms_url
 	end
 end

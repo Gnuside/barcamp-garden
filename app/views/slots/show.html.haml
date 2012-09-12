@@ -10,6 +10,6 @@
   %b Event:
   = @slot.event
 
-= link_to 'Edit', edit_slot_path(@slot)
+= link_to 'Edit', edit_event_slot_path(@event,@slot)
 \|
-= link_to 'Back', slots_path
+= link_to 'Back', event_slots_path(@event)

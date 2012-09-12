@@ -4,20 +4,17 @@
 %div
 	%table.session-table
 		%tr
-			%th Slots \ Rooms
+			%th.desc Slots \ Rooms
 			- @rooms.each do |room|
 				%th= room.name
-			%td= link_to "Add room", new_event_room_path(@event), :class => 'btn small'
-		%tr
-			- @slots.each do |slot|
+			- if current_user && current_user.admin? then
+				%td= link_to "Add room", new_event_room_path(@event), :class => 'btn small'
+		- @slots.each do |slot|
+			%tr
 				%th= slot.dtstart
 				- @rooms.each do
 					%td FIXME: CREATE ETHERPAD
-		%tr
-			%td= link_to "Add slot", new_event_slot_path(@event), :class => 'btn small'
+		- if current_user && current_user.admin? then
+			%tr
+				%td= link_to "Add slot", new_event_slot_path(@event), :class => 'btn small'
 
-	Rooms: 
-	= @rooms.size
-
-	Slots: 
-	= @rooms.size
