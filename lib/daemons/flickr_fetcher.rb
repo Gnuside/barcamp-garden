@@ -58,6 +58,7 @@ while($running) do
 						media.url = url
 						media.author = picture.owner
 						media.remote_id = picture.id
+						media.event_id = event.id
 						res = media.save
 						Rails.logger.info "Saving media #{picture.inspect} ? #{res}"
 					end
