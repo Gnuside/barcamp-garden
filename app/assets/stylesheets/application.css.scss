@@ -12,20 +12,11 @@
  *= require_tree .
  */
 
-* {margin:0;padding:0;} 
-
 $sizeFooterHeight: 20px;
 
 
-#footer {
-    width: 100%;
-    border-top: 1px solid #ddd;
+* {margin:0;padding:0;} 
 
-    p {
-	margin: 1em;
-	text-align: center;
-    }
-}
 
 html, body {
     margin: 0;
@@ -55,5 +46,11 @@ html, body {
     margin-top: -($sizeFooterHeight + 60px);
     clear: both;
     height: $sizeFooterHeight; 
-}
+    width: 100%;
+    border-top: 1px solid #ddd;
 
+    p {
+	margin: 1em;
+	text-align: center;
+    }
+}
