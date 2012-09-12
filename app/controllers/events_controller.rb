@@ -48,6 +48,7 @@ class EventsController < ApplicationController
 		return
 	end
 
+
 	redirect_to :action => "show_schedule", :id => @event.id
   end
 
@@ -58,11 +59,6 @@ class EventsController < ApplicationController
 
 	@rooms = @event.rooms
 	@slots = @event.slots
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @event }
-    end
   end
 
 
