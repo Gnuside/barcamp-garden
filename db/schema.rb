@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120912124654) do
+ActiveRecord::Schema.define(:version => 20120912194719) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -44,6 +44,16 @@ ActiveRecord::Schema.define(:version => 20120912124654) do
   end
 
   add_index "rails_admin_histories", ["item", "table", "month", "year"], :name => "index_rails_admin_histories"
+
+  create_table "remote_media", :force => true do |t|
+    t.string   "platform"
+    t.string   "remote_id"
+    t.string   "url"
+    t.string   "description"
+    t.string   "author"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
 
   create_table "rooms", :force => true do |t|
     t.string   "name"
