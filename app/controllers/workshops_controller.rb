@@ -37,7 +37,7 @@ class WorkshopsController < ApplicationController
 		@workshop = @event.workshops.new(params[:workshop])
 
 		if @workshop.save
-			redirect_to event_workshop_url(@event,@workshop), 
+			redirect_to event_schedule_url(@event), 
 				notice: 'Room was successfully created.'
 		else
 			render action: "new"
