@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  platform: MyString
+  remote_id: MyString
+  url: MyString
+  description: MyString
+  author: MyString
+
+two:
+  platform: MyString
+  remote_id: MyString
+  url: MyString
+  description: MyString
+  author: MyString
