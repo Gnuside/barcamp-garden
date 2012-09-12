@@ -41,25 +41,26 @@ while($running) do
 				workshops = Workshop.where("event_id = ?", event.id)
 				tags = workshops.map{ |w| w.slug }.push(event.slug)
 
-				pp "TAGS", tags
+				Rails.logger.debug "Maching tags : #{tags.inspect}"
 
 				# first is newest, last is oldest
-				results = flickr.photos.search(:tags => event.slug)
+				results = flickr.photos.search(:tags => tags.join(','))
 				results.each do |picture|
 					# info = flickr.photos.getInfo(:photo_id => result.id)  
 					# url = FlickRaw.url_b(info)  
 					url = FlickRaw.url_b picture
-					pp picture
-					pp url
 
-					media = RemoteMedia.new
-					media.platform = 'flickr'
-					media.description = picture.title
-					media.url = url
-					media.author = picture.owner
-					media.remote_id = picture.id
-					res = media.save
-					pp res
+					media = RemoteMedia.where(:platform => 'flickr', :remote_id => picture.id).first
+					if media.nil? then
+						media = RemoteMedia.new
+						media.platform = 'flickr'
+						media.description = picture.title
+						media.url = url
+						media.author = picture.owner
+						media.remote_id = picture.id
+						res = media.save
+						Rails.logger.info "Saving media #{picture.inspect} ? #{res}"
+					end
 				end
 			end
 
