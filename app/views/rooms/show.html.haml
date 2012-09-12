@@ -7,6 +7,6 @@
   %b Event:
   = @room.event.title
 
-= link_to 'Edit', edit_room_path(@room)
+= link_to 'Edit', edit_event_room_path(@event,@room)
 \|
 = link_to 'Back', event_rooms_path(@event)

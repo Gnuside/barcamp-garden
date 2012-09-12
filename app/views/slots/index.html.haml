@@ -2,22 +2,20 @@
 %h2 Listing slots
 
 %table
-  %tr
-    %th Dtstart
-    %th Dtend
-    %th Event
-    %th
-    %th
-    %th
+	%tr
+		%th Dtstart
+		%th Dtend
+		%th
+		%th
+		%th
 
-  - @slots.each do |slot|
-    %tr
-      %td= slot.dtstart
-      %td= slot.dtend
-      %td= slot.event
-      %td= link_to 'Show', slot
-      %td= link_to 'Edit', edit_slot_path(slot)
-      %td= link_to 'Destroy', slot, method: :delete, data: { confirm: 'Are you sure?' }
+	- @slots.each do |slot|
+		%tr
+			%td= slot.dtstart
+			%td= slot.dtend
+			%td= link_to 'Show', event_slot_path(@event,slot)
+			%td= link_to 'Edit', edit_event_slot_path(@event,slot)
+			%td= link_to 'Destroy', [@event,slot], method: :delete, data: { confirm: 'Are you sure?' }
 
 %br
 

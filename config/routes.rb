@@ -1,7 +1,6 @@
 BarcampGarden::Application.routes.draw do
 
 
-  resources :sessions
 
   match '/events/featured_schedule' => 'events#show_featured_schedule', 
 	  :via => [:get],
@@ -18,6 +17,7 @@ BarcampGarden::Application.routes.draw do
   resources :events do
 	  resources :rooms
 	  resources :slots
+	  resources :workshops
   end
 
   resources :authentications

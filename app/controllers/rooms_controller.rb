@@ -61,6 +61,6 @@ class RoomsController < ApplicationController
 		@room = @event.rooms.find(params[:id])
 		@room.destroy
 
-		redirect_to rooms_url
+		redirect_to event_rooms_url
 	end
 end

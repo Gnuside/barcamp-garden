@@ -16,7 +16,7 @@ namespace :db do
 
 		desc "create default admin user"
 		task :admin => :environment do
-			oldadmin = User.where(:email => "admin@example.com")
+			oldadmin = User.where(:email => "admin@example.com").first
 
 			unless oldadmin.nil? then
 				STDERR.puts "Initial admin already exists. Skipping..."
@@ -35,6 +35,7 @@ namespace :db do
 			#admin.activation_code = nil
 			admin.admin = true
 			admin.save :validate => false
+			STDERR.puts "Admin user created sucessfully. Credentials: admin@example.com / admin"
 		end
 
 		desc "Create user accounts with rake, prompting for user name and password."

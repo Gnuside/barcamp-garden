@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120911195731) do
+ActiveRecord::Schema.define(:version => 20120912124654) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -26,8 +26,8 @@ ActiveRecord::Schema.define(:version => 20120911195731) do
     t.string   "title"
     t.string   "slug"
     t.text     "description"
-    t.datetime "date_start"
-    t.datetime "date_end"
+    t.datetime "dtstart"
+    t.datetime "dtend"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(:version => 20120911195731) do
 
   create_table "rooms", :force => true do |t|
     t.string   "name"
-    t.integer  "event_id"
+    t.integer  "event_id",   :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(:version => 20120911195731) do
   create_table "slots", :force => true do |t|
     t.datetime "dtstart"
     t.datetime "dtend"
-    t.integer  "event_id"
+    t.integer  "event_id",   :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -78,5 +78,16 @@ ActiveRecord::Schema.define(:version => 20120911195731) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+
+  create_table "workshops", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.string   "slug"
+    t.integer  "event_id",    :null => false
+    t.integer  "room_id",     :null => false
+    t.integer  "slot_id",     :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
 
 end

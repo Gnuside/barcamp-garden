@@ -19,8 +19,8 @@ class SlotsController < ApplicationController
 		@slot = @event.slots.new
 
 		# Pre-fill with event info
-		@slot.dtstart = @event.date_start
-		@slot.dtend = @event.date_end
+		@slot.dtstart = @event.dtstart
+		@slot.dtend = @event.dtend
 	end
 
 
@@ -65,6 +65,6 @@ class SlotsController < ApplicationController
 		@slot = @event.slots.find(params[:id])
 		@slot.destroy
 
-		redirect_to slots_url
+		redirect_to event_schedule_url(@event)
 	end
 end

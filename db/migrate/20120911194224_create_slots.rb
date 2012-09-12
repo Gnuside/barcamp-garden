@@ -3,7 +3,7 @@ class CreateSlots < ActiveRecord::Migration
     create_table :slots do |t|
       t.datetime :dtstart
       t.datetime :dtend
-      t.references :event
+      t.references :event, :null => false
 
       t.timestamps
     end
