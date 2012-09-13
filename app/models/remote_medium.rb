@@ -1,4 +1,4 @@
-class RemoteMedia < ActiveRecord::Base
+class RemoteMedium < ActiveRecord::Base
   attr_accessible :author, :description, :platform, :remote_id, :url
 
   # FIXME: a media could belong to multiple events ?
