@@ -1,16 +1,23 @@
 class RemoteMediaController < ApplicationController
-  def index
+	layout "application_fullwidth"
+
+	def index
 		@event = Event.find(params[:event_id])
 		@remote_media = @event.remote_media
-  end
+	end
 
-  def show
-  end
+	def show
+	end
 
-  def updated
+	def updates
 		@event = Event.find(params[:event_id])
-		@remote_media = @event.remote_media
-
+		@since_id = params[:since_id]
+		@remote_media = @event.remote_media.where("id >= ?",@since_id);
 		# FIXME : search updated media only
-  end
+
+		respond_to do |format|
+			format.html { render :layout => false }
+			format.json { render json: @authentication }
+		end
+	end
 end
