@@ -36,6 +36,8 @@ gem 'omniauth-facebook'
 #gem 'omniauth-linkedin'
 #gem 'omniauth-google'
 
+gem 'twitter'
+
 # Authorisations
 gem 'cancan'
 
