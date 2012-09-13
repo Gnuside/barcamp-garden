@@ -36,11 +36,15 @@ mkdir -p /var/run/etherpad-lite
 chown -R etherpad-lite:etherpad-lite /var/run/etherpad-lite
 
 cd "$ETHERPAD_DIR"
-./bin/installDeps.sh
+# FIXME: install as user in local dir
+# ./bin/installDeps.sh
 
 install -m 0755 -o root -g root "$CUR_DIR/etherpad.init" "/etc/init.d/etherpad-lite"
 update-rc.d etherpad-lite defaults
 
+# FIXME: install as user  in local dir
+# npm install zeparser
+# npm install sqlite3
 
 #FIXME: test that etherpad is installed in DESTDIR & INIT dir
 exit 0
