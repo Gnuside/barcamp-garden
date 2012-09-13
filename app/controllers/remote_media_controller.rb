@@ -12,7 +12,7 @@ class RemoteMediaController < ApplicationController
 	def updates
 		@event = Event.find(params[:event_id])
 		@since_id = params[:since_id]
-		@remote_media = @event.remote_media.where("id >= ?",@since_id).order("id ASC").limit(5);
+		@remote_media = @event.remote_media.where("id > ?",@since_id).order("id ASC").limit(5);
 		# FIXME : search updated media only
 
 		respond_to do |format|
