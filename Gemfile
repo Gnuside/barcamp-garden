@@ -73,5 +73,8 @@ gem 'unicorn', "~> 4.3.1"
 # Deploy with Capistrano
 gem 'capistrano'
 
+# Wiki rendering
+gem 'RedCloth', :require => 'redcloth'
+
 # To use debugger
 # gem 'debugger'
