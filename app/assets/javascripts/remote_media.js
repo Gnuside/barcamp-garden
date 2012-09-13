@@ -4,12 +4,21 @@ var remote_media_latest = 0
 
 function sayhello() {
 	console.log("sayhello");
-	$.get( 'remote_media_updates?since_id=' + remote_media_latest, 
+	$.get( 'remote_media_updates.json?since_id=' + remote_media_latest, 
 			function(data) { 
-				$(data)
-				.hide()
-				.prependTo('.media-list')
-				.fadeIn();
+				$(data).each(function(id,media){
+					console.log(media)
+					remote_media_latest = media.id;
+					if (media.platform == 'flickr') {
+						$("<li class='span4'>" +
+							"<img src='" + media.url + "' />"  +
+							"</li>"
+						 )
+							.hide()
+					.prependTo('.media-list')
+					.fadeIn('slow');
+					}
+				});
 			}
 		 );
 	setTimeout(sayhello, remote_media_timeout);

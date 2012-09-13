@@ -17,7 +17,7 @@ class RemoteMediaController < ApplicationController
 
 		respond_to do |format|
 			format.html { render :layout => false }
-			format.json { render json: @authentication }
+			format.json { render json: @remote_media }
 		end
 	end
 end
