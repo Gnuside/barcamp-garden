@@ -10,13 +10,22 @@ function sayhello() {
 					console.log(media)
 					remote_media_latest = media.id;
 					if (media.platform == 'flickr') {
-						$("<li class='span4'>" +
+						$("<li class='span4 media-block'>" +
 							"<img src='" + media.url + "' />"  +
 							"</li>"
 						 )
 							.hide()
 					.prependTo('.media-list')
 					.fadeIn('slow');
+					} else if (media.platform == 'twitter' ) {
+						$("<li class='span4 media-block'>" +
+							"<b>" + media.author + "</b> : " +
+							media.description +
+							"</li>"
+						 )
+							.hide()
+					} else {
+						console.log("unknown type");
 					}
 				});
 			}
