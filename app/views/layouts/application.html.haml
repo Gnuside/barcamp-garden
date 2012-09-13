@@ -25,7 +25,7 @@
 						%span.icon-bar
 						%span.icon-bar
 						%span.icon-bar
-					%a.brand(href="#") BarcampGarden
+							%a.brand{:href=> root_url } BarcampGarden
 					.container.nav-collapse
 						/
 							%ul.nav
@@ -43,9 +43,11 @@
 
 	#wrapper
 		.container
-			.content
+			- if content_for? :wrapper_container then
+				= yield :wrapper_container
+			- else
 				.row
-					.span3
+					.sidebar.span3
 						.well.sidebar-nav
 							%ul.nav.nav-list
 								%li.nav-header Navigation
@@ -60,7 +62,7 @@
 								%li= link_to "Documents", "#"
 								%li= link_to "References", "#"
 
-					.span9
+					.content.span9
 						= bootstrap_flash
 						= yield
 		#pusher
