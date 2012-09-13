@@ -54,7 +54,7 @@ while($running) do
 				tags_expr = tags.join(' OR ')
 
 				results = Twitter.search(tags_expr)
-				#pp results
+				pp results
 
 				results.each do |tweet|
 					STDERR.puts tweet.inspect
