@@ -35,24 +35,34 @@ while($running) do
 			"dtstart < ? AND dtend > ?", 
 			tomorrow.utc, yesterday.utc)
 
+
 			events.each do |event|
+
+				event_tags =  event.slug.split(/[, \t]/)
+
 				Rails.logger.info "Fetching for event #{event.inspect}"
 
 				workshops = Workshop.where("event_id = ?", event.id)
-				tags = workshops.map{ |w| w.slug }.push(event.slug)
+				#pp "WORKSHOPS", workshops
 
-				Rails.logger.debug "Maching tags : #{tags.inspect}"
+				tags = workshops.map{ |w| w.slug.split(/[, \t]/) }
+				tags.concat(event_tags)
+				STDERR.puts tags.inspect
+
+				Rails.logger.info "Maching tags : #{tags.inspect}"
 
 				# first is newest, last is oldest
 				results = flickr.photos.search(:tags => tags.join(','))
 				results.each do |picture|
+					STDERR.puts picture.inspect
 					# info = flickr.photos.getInfo(:photo_id => result.id)  
 					# url = FlickRaw.url_b(info)  
-					url = FlickRaw.url_b picture
+					url = FlickRaw.url picture
 
-					media = RemoteMedia.where(:platform => 'flickr', :remote_id => picture.id).first
+					media = RemoteMedium.where(:platform => 'flickr', :remote_id => picture.id).first
+					STDERR.puts media.inspect
 					if media.nil? then
-						media = RemoteMedia.new
+						media = RemoteMedium.new
 						media.platform = 'flickr'
 						media.description = picture.title
 						media.url = url
@@ -61,11 +71,13 @@ while($running) do
 						media.event_id = event.id
 						res = media.save
 						Rails.logger.info "Saving media #{picture.inspect} ? #{res}"
+						STDERR.puts "Saving media #{picture.inspect} ? #{res}"
 					end
 				end
 			end
 
 	rescue Exception => e
+		Rails.logger.error e
 		# FIXME: log & handle properly 
 	end
 
