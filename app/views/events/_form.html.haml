@@ -1,25 +1,36 @@
-= form_for @event do |f|
-  - if @event.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@event.errors.count, "error")} prohibited this event from being saved:"
-      %ul
-        - @event.errors.full_messages.each do |msg|
-          %li= msg
+= form_for(@event, :html => {:class => "form-horizontal"}) do |f|
+	- if @event.errors.any?
+		#error_explanation
+			%h2= "#{pluralize(@event.errors.count, "error")} prohibited this event from being saved:"
+			%ul
+				- @event.errors.full_messages.each do |msg|
+					%li= msg
 
-  .field
-    = f.label :title
-    = f.text_field :title
-  .field
-    = f.label :slug
-    = f.text_field :slug
-  .field
-    = f.label :description
-    = f.text_area :description
-  .field
-    = f.label :dtstart
-    = f.datetime_select :dtstart
-  .field
-    = f.label :dtend
-    = f.datetime_select :dtend
-  .actions
-    = f.submit 'Save'
+	.control-group
+		= f.label :title, "Title", :class=>"control-label"
+		.controls
+			= f.text_field :title, :class=>"input-xxlarge", :placeholder => "My Super event"
+
+	.field
+		= f.label :slug, "Slug", :class=>"control-label"
+		.controls
+			= f.text_field :slug, :class=>"input-xxlarge", :placeholder => "a-slug-example"
+			.help-inline a unique keyword to describe the event
+
+	.field
+		= f.label :description, "Description", :class=>"control-label"
+		.controls
+			= f.text_area :description, :class=>"input-xxlarge"
+
+	.field
+		= f.label :dtstart, "Starting date and time"
+		.controls
+			= f.datetime_select :dtstart, :minute_step => 15
+
+	.field
+		= f.label :dtend, "Ending date and time"
+		.controls
+			= f.datetime_select :dtend, :minute_step => 15
+
+	.actions
+		= f.submit 'Save'
