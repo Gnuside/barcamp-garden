@@ -16,6 +16,10 @@ BarcampGarden::Application.routes.draw do
 	  :via => [:get],
 	  :as => :featured_media
 
+  match '/events/:event_id/remote_media_updates(.:format)' => 'remote_media#updates',
+	  :via => [:get],
+	  :as => :event_remote_media_updates
+
   match '/schedule' => 'events#show_featured_schedule'
 
   resources :events do
