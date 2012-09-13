@@ -52,7 +52,7 @@ class WorkshopsController < ApplicationController
 		@workshop = @event.workshops.find(params[:id])
 
 		if @workshop.update_attributes(params[:workshop])
-			redirect_to event_workshop_url(@event,@workshop), 
+			redirect_to event_schedule_url(@event), 
 				notice: 'Room was successfully updated.'
 		else
 			render action: "edit"
@@ -66,6 +66,6 @@ class WorkshopsController < ApplicationController
 		@workshop = @event.workshops.find(params[:id])
 		@workshop.destroy
 
-		redirect_to event_workshops_url
+		redirect_to event_schedule_url(@event)
 	end
 end

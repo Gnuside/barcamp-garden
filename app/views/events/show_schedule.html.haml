@@ -9,15 +9,31 @@
 				%th 
 					= room.name
 					- if current_user && current_user.admin? then
-						= link_to "", event_room_path(@event,room), :method => :delete, :class => 'btn small icon-remove'
+						.btn-group
+							= link_to "", edit_event_room_path(@event,room),
+								:class => 'btn btn-mini icon-edit'
+							= link_to "", event_room_path(@event,room), 
+								:method => :delete, 
+								:confirm=>'Are you sure?',
+								:class => 'btn btn-mini icon-remove btn-danger'
 			- if current_user && current_user.admin? then
-				%td= link_to "Add room", new_event_room_path(@event), :class => 'btn small'
+				%td= link_to "Add room", new_event_room_path(@event), 
+					:class => 'btn btn-small'
 		- @slots.each do |slot|
 			%tr
 				%th
-					= slot.dtstart
+					.right
+						= slot.dtstart
+						%br/
+						= slot.dtend
 					- if current_user && current_user.admin? then
-						= link_to "", event_slot_path(@event,slot), :method => :delete, :class => 'btn small icon-remove'
+						.btn-group
+							= link_to "", edit_event_slot_path(@event,slot),
+								:class => 'btn btn-mini icon-edit'
+							= link_to "", event_slot_path(@event,slot),
+								:method => :delete,
+								:confirm=>'Delete workshop Are you sure?',
+								:class => 'btn btn-mini icon-remove btn-danger'
 
 				- @rooms.each do |room|
 					%td 
@@ -26,14 +42,23 @@
 							- if current_user && current_user.admin? then
 								= link_to "Create workshop", 
 									new_event_workshop_path(@event,:room_id=>room.id,:slot_id=>slot.id),
-									:class => 'btn small'
+									:class => 'btn btn-small'
 							- else
 								No workshop (yet!)
 						- else
 							= link_to "#{workshop.title} ##{workshop.slug}",
 								File.join(ETHERPAD_URL,'p',"#{@event.slug}_#{workshop.slug}"), 
 								:target => "_blank"
+							- if current_user && current_user.admin? then
+								.btn-group
+									= link_to "", edit_event_workshop_path(@event,workshop),
+										:class => 'btn btn-mini icon-edit'
+									= link_to "", event_workshop_path(@event,workshop),
+										:method => :delete,
+										:confirm=>'Are you sure?',
+										:class => 'btn btn-mini icon-remove btn-danger'
+
 		- if current_user && current_user.admin? then
 			%tr
-				%td= link_to "Add slot", new_event_slot_path(@event), :class => 'btn small'
+				%td= link_to "Add slot", new_event_slot_path(@event), :class => 'btn btn-small'
 
