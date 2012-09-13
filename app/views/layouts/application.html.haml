@@ -56,11 +56,18 @@
 								%li= link_to "Schedule", "/schedule"
 								%li= link_to "Media stream", "/mediastream"
 
-						.well.sidebar-nav
-							%ul.nav.nav-list
-								%li.nav-header Special features
-								%li= link_to "Documents", "#"
-								%li= link_to "References", "#"
+						/
+							.well.sidebar-nav
+								%ul.nav.nav-list
+									%li.nav-header Special features
+									%li= link_to "Documents", "#"
+									%li= link_to "References", "#"
+
+						- if current_user && current_user.admin? then
+							.well.sidebar-nav.admin
+								%ul.nav.nav-list
+									%li.nav-header Admin
+									%li= link_to "Users", "#"
 
 					.content.span9
 						= bootstrap_flash
