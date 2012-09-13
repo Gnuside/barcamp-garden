@@ -1,14 +1,23 @@
 
+var remote_media_timeout = 10000;
+var remote_media_latest = 0
+
 function sayhello() {
 	console.log("sayhello");
-	$.get( 'updated', 
+	$.get( 'remote_media_updates?since_id=' + remote_media_latest, 
 			function(data) { 
-				$('.media-list').append("<li>Successfully got the page.</li>");
+				$(data)
+				.hide()
+				.prependTo('.media-list')
+				.fadeIn();
 			}
 		 );
-	setTimeout(sayhello, 1000);
+	setTimeout(sayhello, remote_media_timeout);
 }
 
 $(document).ready(function() {
-	setTimeout(sayhello, 1000);
+	// test we have a media list on the page
+	if ($('.media-list').length) {
+		setTimeout(sayhello, remote_media_timeout);
+	}
 });
