@@ -35,11 +35,11 @@
 							%p.navbar-text
 								- if user_signed_in?
 									Signed in as #{current_user.email}.
-									= link_to "Sign out", "/users/sign_out", :method => :delete
+									= link_to "Sign out", destroy_user_session_url, :method => :delete
 								- else
-									= link_to "Register", "/users/sign_up"
+									= link_to "Register", new_user_registration_url
 									or
-									= link_to "Sign In", "/users/sign_in"
+									= link_to "Sign In", new_user_session_url
 
 	#wrapper
 		.container
