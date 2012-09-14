@@ -11,24 +11,26 @@
 		.controls
 			= f.text_field :title, :class=>"input-xxlarge", :placeholder => "My Super event"
 
-	.field
+	.control-group
 		= f.label :slug, "Slug", :class=>"control-label"
 		.controls
 			= f.text_field :slug, :class=>"input-xxlarge", :placeholder => "a-slug-example"
 			.help-inline a unique keyword to describe the event
 
-	.field
+	.control-group
 		= f.label :description, "Description", :class=>"control-label"
 		.controls
 			= f.text_area :description, :class=>"input-xxlarge"
 
-	.field
-		= f.label :dtstart, "Starting date and time"
+	.control-group
+		= f.label :dtstart, "Starting date and time", :class=>"control-label"
+
 		.controls
 			= f.datetime_select :dtstart, :minute_step => 15
 
-	.field
-		= f.label :dtend, "Ending date and time"
+	.control-group
+		= f.label :dtend, "Ending date and time", :class=>"control-label"
+
 		.controls
 			= f.datetime_select :dtend, :minute_step => 15
 
