@@ -6,5 +6,5 @@ class Event < ActiveRecord::Base
   has_many :workshops, :dependent => :destroy
   has_many :remote_media, :dependent => :destroy
 
-  validates :slug, :format => { :with => /[a-z0-9]{5}[a-z0-9]*/ }
+  validates :slug, :format => { :with => /^[a-z0-9]{5}[a-z0-9]*$/ }
 end
