@@ -1,4 +1,4 @@
-= form_for([@event,@workshop]) do |f|
+= form_for([@event,@workshop], :html => {:class => "form-horizontal"}) do |f|
 	- if @workshop.errors.any?
 		#error_explanation
 			%h2= "#{pluralize(@workshop.errors.count, "error")} prohibited this workshop from being saved:"
@@ -6,16 +6,24 @@
 				- @workshop.errors.full_messages.each do |msg|
 					%li= msg
 
-	.field
-		= f.label :title
-		= f.text_field :title
-	.field
-		= f.label :slug
-		= f.text_field :slug
-	.field
-		= f.label :description
-		= f.text_area :description
-		= f.hidden_field :room_id, :value => @workshop.room_id
-		= f.hidden_field :slot_id, :value => @workshop.slot_id
-	.actions
-		= f.submit 'Save'
+	.control-group
+		= f.label :title, "Title", :class=>"control-label"
+		.controls
+			= f.text_field :title, :class=>"input-xxlarge"
+
+	.control-group
+		= f.label :slug, "Slug", :class=>"control-label"
+		.controls
+			= f.text_field :slug, :class=>"input-xxlarge"
+
+	.control-group
+		= f.label :description, "Description", :class=>"control-label"
+		.controls
+			= f.text_area :description, :class=>"input-xxlarge"
+			= f.hidden_field :room_id, :value => @workshop.room_id
+			= f.hidden_field :slot_id, :value => @workshop.slot_id
+
+	.control-group
+		.controls
+			= f.submit 'Save', :class => "btn btn-primary" 
+			= link_to 'Cancel', event_schedule_path(@event), :class => "btn"
