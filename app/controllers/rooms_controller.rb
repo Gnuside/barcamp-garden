@@ -33,7 +33,7 @@ class RoomsController < ApplicationController
 		@room = @event.rooms.new(params[:room])
 
 		if @room.save
-			redirect_to event_room_url(@event,@room), 
+			redirect_to event_schedule_url(@event), 
 				notice: 'Room was successfully created.'
 		else
 			render action: "new"
@@ -47,7 +47,7 @@ class RoomsController < ApplicationController
 		@room = @event.rooms.find(params[:id])
 
 		if @room.update_attributes(params[:room])
-			redirect_to event_room_url(@event,@room), 
+			redirect_to event_schedule_url(@event), 
 				notice: 'Room was successfully updated.'
 		else
 			render action: "edit"
@@ -61,6 +61,6 @@ class RoomsController < ApplicationController
 		@room = @event.rooms.find(params[:id])
 		@room.destroy
 
-		redirect_to event_rooms_url
+		redirect_to event_schedule_url(@event)
 	end
 end

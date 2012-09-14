@@ -37,7 +37,7 @@ class SlotsController < ApplicationController
 		@slot = @event.slots.new(params[:slot])
 
 		if @slot.save
-			redirect_to event_slot_url(@event,@slot), 
+			redirect_to event_schedule_url(@event),
 				notice: 'Room was successfully created.'
 		else
 			render action: "new"
@@ -51,7 +51,7 @@ class SlotsController < ApplicationController
 		@slot = @event.slots.find(params[:id])
 
 		if @slot.update_attributes(params[:slot])
-			redirect_to event_slot_url(@event,@slot), 
+			redirect_to event_schedule_url(@event),
 				notice: 'Room was successfully updated.'
 		else
 			render action: "edit"
