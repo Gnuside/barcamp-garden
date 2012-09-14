@@ -10,13 +10,20 @@
  *
  *= require_self
  *= require_tree .
+
  */
 
 $sizeFooterHeight: 20px;
 
 
-* {margin:0;padding:0;} 
+// * {margin:0;padding:0;} 
 
+.navbar {
+    .brand {
+	font-weight: bold;
+	color: red;
+    }
+}
 
 html, body {
     margin: 0;
