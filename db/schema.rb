@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120912194719) do
+ActiveRecord::Schema.define(:version => 20120914091417) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(:version => 20120912194719) do
 
   create_table "events", :force => true do |t|
     t.string   "title"
-    t.string   "slug"
+    t.string   "slug",        :null => false
     t.text     "description"
     t.datetime "dtstart"
     t.datetime "dtend"
@@ -95,12 +95,14 @@ ActiveRecord::Schema.define(:version => 20120912194719) do
   create_table "workshops", :force => true do |t|
     t.string   "title"
     t.text     "description"
-    t.string   "slug"
+    t.string   "slug",        :null => false
     t.integer  "event_id",    :null => false
     t.integer  "room_id",     :null => false
     t.integer  "slot_id",     :null => false
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
+
+  add_index "workshops", ["event_id", "slug"], :name => "index_workshops_on_event_id_and_slug", :unique => true
 
 end
