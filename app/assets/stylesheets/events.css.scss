@@ -29,5 +29,12 @@
     td,th {
 	border: 1px dashed #ccc;
 	text-align: center;
+
+	.btn-group {
+	    padding-right: 5px;
+	    display: block;
+	    float: right;
+	    text-align: right;
+	}
     }
 }

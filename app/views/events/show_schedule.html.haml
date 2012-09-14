@@ -15,17 +15,13 @@
 							= link_to "", event_room_path(@event,room), 
 								:method => :delete, 
 								:confirm=>'Are you sure?',
-								:class => 'btn btn-mini icon-remove btn-danger'
+								:class => 'btn btn-mini icon-remove'
 			- if current_user && current_user.admin? then
 				%td= link_to "Add room", new_event_room_path(@event), 
 					:class => 'btn btn-small'
 		- @slots.each do |slot|
 			%tr
 				%th
-					.right
-						= slot.dtstart
-						%br/
-						= slot.dtend
 					- if current_user && current_user.admin? then
 						.btn-group
 							= link_to "", edit_event_slot_path(@event,slot),
@@ -33,7 +29,10 @@
 							= link_to "", event_slot_path(@event,slot),
 								:method => :delete,
 								:confirm=>'Delete workshop Are you sure?',
-								:class => 'btn btn-mini icon-remove btn-danger'
+								:class => 'btn btn-mini icon-remove'
+						= slot.dtstart
+						%br/
+						= slot.dtend
 
 				- @rooms.each do |room|
 					%td 
@@ -42,7 +41,7 @@
 							- if current_user && current_user.admin? then
 								= link_to "Create workshop", 
 									new_event_workshop_path(@event,:room_id=>room.id,:slot_id=>slot.id),
-									:class => 'btn btn-small'
+									:class => 'btn btn-small btn-primary'
 							- else
 								No workshop (yet!)
 						- else
@@ -56,7 +55,7 @@
 									= link_to "", event_workshop_path(@event,workshop),
 										:method => :delete,
 										:confirm=>'Are you sure?',
-										:class => 'btn btn-mini icon-remove btn-danger'
+										:class => 'btn btn-mini icon-remove'
 
 		- if current_user && current_user.admin? then
 			%tr
