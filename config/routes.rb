@@ -31,7 +31,7 @@ BarcampGarden::Application.routes.draw do
 
   resources :authentications
 
-  devise_for :users
+  devise_for :users, :path => 'access'
 
   match '/auth/:provider/callback' => 'authentications#create'  
 
