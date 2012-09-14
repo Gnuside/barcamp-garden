@@ -1,13 +1,17 @@
-= form_for([@event,@room]) do |f|
-  - if @room.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@room.errors.count, "error")} prohibited this room from being saved:"
-      %ul
-        - @room.errors.full_messages.each do |msg|
-          %li= msg
+= form_for([@event,@room], :html => {:class => "form-horizontal"}) do |f|
+	- if @room.errors.any?
+		#error_explanation
+			%h2= "#{pluralize(@room.errors.count, "error")} prohibited this room from being saved:"
+			%ul
+				- @room.errors.full_messages.each do |msg|
+					%li= msg
 
-  .field
-    = f.label :name
-    = f.text_field :name
-  .actions
-    = f.submit 'Save'
+	.control-group
+		= f.label :name, "Name", :class=>'control-label'
+		.controls
+			= f.text_field :name, :class=>"input-xxlarge"
+
+	.control-group
+		.controls
+			= f.submit 'Save', :class => 'btn btn-primary'
+			= link_to 'Cancel', event_schedule_path(@event), :class => 'btn'
