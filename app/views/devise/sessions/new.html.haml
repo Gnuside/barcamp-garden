@@ -1,0 +1,24 @@
+%h2 Sign ink
+
+= form_for(resource, :as => resource_name, 
+	:url => session_path(resource_name), 
+	:html => {:class => "form-horizontal"}) do |f|
+	.control-group
+		= f.label :email
+		.controls
+			= f.email_field :email
+
+	.control-group
+		= f.label :password
+		.controls
+			= f.password_field :password
+
+	- if devise_mapping.rememberable?
+		.control-group
+			= f.label :remember_me
+			.controls
+				= f.check_box :remember_me 
+
+	= f.submit "Sign in", :class => 'btn btn-primary'
+
+= render "devise/shared/links"
