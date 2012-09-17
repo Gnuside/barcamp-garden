@@ -32,11 +32,14 @@
 								%li= link_to "Link 1", "/path1"
 								%li= link_to "Link 2", "/path2"
 						%div.pull-right
-							%p.navbar-text
-								- if user_signed_in?
-									Signed in as #{current_user.email}.
-									= link_to "Sign out", destroy_user_session_url, :method => :delete
-								- else
+							- if user_signed_in?
+								%p.navbar-text
+									Signed in as 
+									= link_to current_user.email, edit_user_registration_url, :class=>'label label-info'
+									\.
+									= link_to "Sign out", destroy_user_session_url, :method => :delete, :class=>'label label-warning'
+							- else
+								%p.navbar-text
 									= link_to "Register", new_user_registration_url
 									or
 									= link_to "Sign In", new_user_session_url
