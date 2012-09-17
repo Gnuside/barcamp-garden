@@ -22,9 +22,14 @@ group :assets do
   gem "twitter-bootstrap-rails"
 end
 
+group :development do
+	gem 'haml-rails', "~> 0.3.5"
+	gem "hpricot"
+	gem "ruby_parser"
+end
+
 ## Haml support
 gem "haml", "~> 3.1.7"
-gem 'haml-rails', "~> 0.3.5", :group => :development
 
 # User management
 gem "devise"
