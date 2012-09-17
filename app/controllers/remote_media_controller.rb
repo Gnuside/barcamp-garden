@@ -1,5 +1,8 @@
 class RemoteMediaController < ApplicationController
 	layout "application_fullwidth"
+	before_filter :authenticate_user!, :except => [
+		:index, :show
+	]
 
 	def index
 		@event = Event.find(params[:event_id])

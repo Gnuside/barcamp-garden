@@ -1,4 +1,8 @@
 class SlotsController < ApplicationController
+	before_filter :authenticate_user!, :except => [
+		:index, :show
+	]
+
 	# GET /events/:id/slots
 	def index
 		@event = Event.find(params[:event_id])

@@ -1,4 +1,8 @@
 class RoomsController < ApplicationController
+	before_filter :authenticate_user!, :except => [
+		:index, :show
+	]
+
 	# GET /events/:id/rooms
 	def index
 		@event = Event.find(params[:event_id])
