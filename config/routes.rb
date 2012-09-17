@@ -29,6 +29,7 @@ BarcampGarden::Application.routes.draw do
 	  resources :remote_media
   end
 
+  resources :users
   resources :authentications
 
   devise_for :users, :path => 'access'
