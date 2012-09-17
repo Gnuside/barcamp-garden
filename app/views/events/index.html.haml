@@ -1,27 +1,20 @@
 %h1 Listing events
 
 %table
-  %tr
-    %th Title
-    %th Slug
-    %th Description
-    %th Date start
-    %th Date end
-    %th
-    %th
-    %th
+	%tr
+		%th Title
+		%th Date start
+		%th Date end
 
-  - @events.each do |event|
-    %tr
-      %td= event.title
-      %td= event.slug
-      %td= event.description
-      %td= event.dtstart
-      %td= event.dtend
-      %td= link_to 'Show', event
-      %td= link_to 'Edit', edit_event_path(event)
-      %td= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' }
+	- @events.each do |event|
+		%tr
+			%td
+				= link_to event.title, event
+				= link_to '', edit_event_path(event), :class=>"btn btn-small icon-edit"
+				= link_to '', event, method: :delete, :class => "btn btn-small icon-remove", data: { confirm: 'Are you sure?' }
+			%td= event.dtstart
+			%td= event.dtend
 
 %br
 
-= link_to 'New Event', new_event_path
+= link_to 'New Event', new_event_path, :class=>"btn"

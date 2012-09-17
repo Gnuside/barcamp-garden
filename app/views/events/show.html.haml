@@ -13,4 +13,4 @@
 
 - if current_user && current_user.admin? then
 	= link_to 'Edit', edit_event_path(@event), :class => 'btn'
-	= link_to 'Back', events_path, :class => 'btn'
+	= link_to 'Delete', @event, :method => :delete, :data => { :confirm => "This will delete the event and all associated data"}, :class => 'btn btn-danger'

@@ -35,4 +35,5 @@
 			= f.datetime_select :dtend, :minute_step => 15
 
 	.actions
-		= f.submit 'Save'
+		= f.submit 'Save', :class => 'btn btn-primary'
+		= link_to 'Cancel', events_path, :class => 'btn'
