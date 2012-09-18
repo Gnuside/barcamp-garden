@@ -1,5 +1,3 @@
-%p#notice= notice
-
 .btn-group.pull-right
 	- if current_user && current_user.admin? then
 		= link_to edit_event_path(@event), :class => 'btn' do
@@ -20,7 +18,7 @@
 	\- To:
 	%span.dtend= @event.dtend
 
-%p= raw RedCloth.new(@event.description).to_html
+%p= raw BlueCloth.new(@event.description).to_html
 
 - if current_user then
 	/ FIXME: check that event is open 
