@@ -1,0 +1,34 @@
+= form_for(@user, :html => {:class => "form-horizontal"}) do |f|
+	- if @user.errors.any?
+		#error_explanation
+			%h2= "#{pluralize(@user.errors.count, "error")} prohibited this user from being saved:"
+			%ul
+				- @user.errors.full_messages.each do |msg|
+					%li= msg
+
+	.control-group
+		= f.label :email, :class=>"control-label"
+		.controls
+			= f.text_field :email, :class=>"input-xxlarge", :placeholder => "john.smith@example.com"
+
+	.control-group
+		= f.label :password, :class=>'control-label'
+		.controls
+			= f.password_field :password, :autocomplete => "off"
+			.help-inline (leave blank if you don't want to change it)
+
+	.control-group
+		= f.label :password_confirmation, :class=>'control-label'
+		.controls
+			= f.password_field :password_confirmation
+
+	.control-group
+		= f.label :admin, :class=>"control-label"
+		.controls
+			= f.check_box :admin
+
+	.control-group
+		.controls
+			= f.submit 'Save', :class=>"btn btn-primary"
+			= link_to 'Cancel', users_path, :class=>'btn'
+

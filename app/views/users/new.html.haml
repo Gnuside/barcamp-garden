@@ -1,2 +1,6 @@
-%h1 User#new
-%p Find me in app/views/user/new.html.haml
+%h1= @user.email
+%h2 New user
+
+= render 'form'
+
+/FIXME: re-enable = link_to 'Back', user_path(@user)
