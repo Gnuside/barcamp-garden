@@ -28,8 +28,8 @@ class SlotsController < ApplicationController
 		end
 
 		# Pre-fill with event info
-		@slot.dtstart = @day
-		@slot.dtend = @day
+		@slot.dtstart = @day.to_datetime
+		@slot.dtend = @day.to_datetime
 	end
 
 
