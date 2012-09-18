@@ -34,8 +34,8 @@
 						%div.pull-right
 							- if user_signed_in?
 								%p.navbar-text
-									Signed in as 
-									= link_to current_user.email, edit_user_registration_url, :class=>'label label-info'
+									- link = link_to current_user.email, edit_user_registration_url, :class=>'label label-info'
+									= raw t('layout.navigation.signedinas') % link
 									\.
 									= link_to "Sign out", destroy_user_session_url, :method => :delete, :class=>'label label-warning'
 							- else
@@ -50,30 +50,7 @@
 				= yield :wrapper_container
 			- else
 				.row
-					.sidebar.span3
-						.well.sidebar-nav
-							%ul.nav.nav-list
-								%li.nav-header Navigation
-								%li= link_to "Home", root_url
-								/ %li= link_to "Guest list", "/guestlist"
-								%li= link_to "Schedule", "/schedule"
-								%li= link_to "Media stream", "/mediastream"
-
-						/
-							.well.sidebar-nav
-								%ul.nav.nav-list
-									%li.nav-header Special features
-									%li= link_to "Documents", "#"
-									%li= link_to "References", "#"
-
-						- if current_user && current_user.admin? then
-							.well.sidebar-nav.admin
-								%ul.nav.nav-list
-									%li.nav-header Admin
-									%li= link_to "Settings", events_url
-									%li= link_to "Events", events_url
-									%li= link_to "Users", users_url
-
+					= render :partial => 'sidebar'
 					.content.span9
 						= bootstrap_flash
 						= yield

@@ -3,3 +3,12 @@
 
 en:
   hello: "Hello world"
+  layout:
+    navigation: 
+      signedinas: "Signed in as %s"
+    sidebar:
+      currentevent: "Current event"
+      presentation: "Presentation"
+      schedule: "Schedule"
+      mediastream: "Media Stream"
+      

@@ -1,0 +1,30 @@
+.sidebar.span3
+	.well.sidebar-nav
+		%ul.nav.nav-list
+			%li.nav-header= t('layout.sidebar.currentevent')
+			%li= link_to t('layout.sidebar.presentation'), root_url
+			/ %li= link_to "Guest list", "/guestlist"
+			%li= link_to t('layout.sidebar.schedule'), "/schedule"
+			%li= link_to t('layout.sidebar.mediastream'), "/mediastream"
+
+	/
+		.well.sidebar-nav
+			%ul.nav.nav-list
+				%li.nav-header Special features
+				%li= link_to "Documents", "#"
+				%li= link_to "References", "#"
+
+	- if current_user && current_user.admin? then
+		.well.sidebar-nav.admin
+			%ul.nav.nav-list
+				%li.nav-header Admin
+				%li= link_to "Settings", events_url
+				%li= link_to "Events", events_url
+				%li= link_to "Users", users_url
+	
+	.well.sidebar-nav
+		%ul.nav.nav-list
+			%li.nav-header Sponsors
+			%li Sponsor 1 with logo
+			%li ...
+			%li Sponsor N with logo
