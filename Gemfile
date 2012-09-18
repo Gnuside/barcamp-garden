@@ -88,7 +88,7 @@ gem 'unicorn', "~> 4.3.1"
 gem 'capistrano'
 
 # Wiki rendering
-gem 'RedCloth', :require => 'redcloth'
+gem 'bluecloth'
 
 # To use debugger
 # gem 'debugger'
