@@ -1,63 +1,9 @@
 %h1= @event.title
 %h2 Schedule
 
-%div
-	%table.workshop-table
-		%tr
-			%th.desc Slots \ Rooms
-			- @rooms.each do |room|
-				%th 
-					= room.name
-					- if current_user && current_user.admin? then
-						.btn-group
-							= link_to "", edit_event_room_path(@event,room),
-								:class => 'btn btn-mini icon-edit'
-							= link_to "", event_room_path(@event,room), 
-								:method => :delete, 
-								:confirm=>'Are you sure?',
-								:class => 'btn btn-mini icon-remove'
-			- if current_user && current_user.admin? then
-				%td= link_to "Add room", new_event_room_path(@event), 
-					:class => 'btn'
-		- @slots.each do |slot|
-			%tr
-				%th
-					- if current_user && current_user.admin? then
-						.btn-group
-							= link_to "", edit_event_slot_path(@event,slot),
-								:class => 'btn btn-mini icon-edit'
-							= link_to "", event_slot_path(@event,slot),
-								:method => :delete,
-								:confirm=>'Delete workshop Are you sure?',
-								:class => 'btn btn-mini icon-remove'
-						= slot.dtstart
-						%br/
-						= slot.dtend
+- @event.dtstart.to_date.upto(@event.dtend.to_date) do |day|
+	= render :partial => 'events/schedule/table', :locals => { :day => day }
 
-				- @rooms.each do |room|
-					%td 
-						- workshop = room.workshops.where(:slot_id => slot.id,:room_id=>room.id).first
-						- if workshop.nil?
-							- if current_user && current_user.admin? then
-								= link_to "Create workshop", 
-									new_event_workshop_path(@event,:room_id=>room.id,:slot_id=>slot.id),
-									:class => 'btn btn-primary'
-							- else
-								No workshop (yet!)
-						- else
-							- if current_user && current_user.admin? then
-								.btn-group
-									= link_to "", edit_event_workshop_path(@event,workshop),
-										:class => 'btn btn-mini icon-edit'
-									= link_to "", event_workshop_path(@event,workshop),
-										:method => :delete,
-										:confirm=>'Are you sure?',
-										:class => 'btn btn-mini icon-remove'
-							= link_to "#{workshop.title} ##{workshop.slug}",
-								File.join(ETHERPAD_URL,'p',"#{@event.slug}_#{workshop.slug}"), 
-								:target => "_blank"
-
-		- if current_user && current_user.admin? then
-			%tr
-				%td= link_to "Add slot", new_event_slot_path(@event), :class => 'btn'
-
+- if current_user && current_user.admin? then
+	= link_to 'Edit', edit_event_path(@event), :class => 'btn'
+	= link_to 'Delete', @event, :method => :delete, :data => { :confirm => "This will delete the event and all associated data"}, :class => 'btn btn-danger'
