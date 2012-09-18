@@ -26,6 +26,7 @@ group :development do
 	gem 'haml-rails', "~> 0.3.5"
 	gem "hpricot"
 	gem "ruby_parser"
+	gem "foreman"
 end
 
 ## Haml support
