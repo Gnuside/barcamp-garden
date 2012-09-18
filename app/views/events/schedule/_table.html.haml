@@ -1,0 +1,47 @@
+%h3= day.to_formatted_s(:long)
+
+%table.workshop-table
+	/ BUILD HEADER FIRST
+	%tr
+		%th.desc Slots \ Rooms
+		- @rooms.each do |room|
+			%th 
+				= room.name
+				- if current_user && current_user.admin? then
+					.btn-group
+						= link_to "", edit_event_room_path(@event,room),
+							:class => 'btn btn-mini icon-edit'
+						= link_to "", event_room_path(@event,room), 
+							:method => :delete, 
+							:confirm=>'Are you sure?',
+							:class => 'btn btn-mini icon-remove'
+		- if current_user && current_user.admin? then
+			%td= link_to "Add room", new_event_room_path(@event, :day => day), 
+				:class => 'btn'
+
+	/ BUILD WORKSHOP GRID
+	- @slots.each do |slot|
+		- next if slot.dtstart.to_date != day
+		%tr
+			%th
+				- if current_user && current_user.admin? then
+					.btn-group
+						= link_to "", edit_event_slot_path(@event,slot),
+							:class => 'btn btn-mini icon-edit'
+						= link_to "", event_slot_path(@event,slot),
+							:method => :delete,
+							:confirm=>'Delete workshop Are you sure?',
+							:class => 'btn btn-mini icon-remove'
+					= slot.dtstart.to_time.to_formatted_s(:time)
+					%br/
+					= slot.dtend.to_time.to_formatted_s(:time)
+
+			- @rooms.each do |room|
+				%td 
+					= render :partial => 'events/schedule/workshop', :locals => { :slot => slot, :room => room }
+
+	/ BUILD FOOTER
+	- if current_user && current_user.admin? then
+		%tr
+			%td= link_to "Add slot", new_event_slot_path(@event, :day => day), :class => 'btn'
+

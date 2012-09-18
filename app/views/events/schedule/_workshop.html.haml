@@ -1,0 +1,20 @@
+- workshop = room.workshops.where(:slot_id => slot.id,:room_id=>room.id).first
+- if workshop.nil?
+	- if current_user && current_user.admin? then
+		= link_to "Create workshop", 
+			new_event_workshop_path(@event,:room_id=>room.id,:slot_id=>slot.id),
+			:class => 'btn btn-primary'
+	- else
+		No workshop (yet!)
+- else
+	- if current_user && current_user.admin? then
+		.btn-group
+			= link_to "", edit_event_workshop_path(@event,workshop),
+				:class => 'btn btn-mini icon-edit'
+			= link_to "", event_workshop_path(@event,workshop),
+				:method => :delete,
+				:confirm=>'Are you sure?',
+				:class => 'btn btn-mini icon-remove'
+	= link_to "#{workshop.title} ##{workshop.slug}",
+		File.join(ETHERPAD_URL,'p',"#{@event.slug}_#{workshop.slug}"), 
+		:target => "_blank"
