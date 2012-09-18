@@ -1,5 +1,16 @@
 %p#notice= notice
 
+.btn-group.pull-right
+	- if current_user && current_user.admin? then
+		= link_to edit_event_path(@event), :class => 'btn' do
+			%i.icon-edit
+			Edit
+		= link_to @event, :method => :delete, 
+			:data => { :confirm => "This will delete the event and all associated data"}, 
+			:class => 'btn btn-danger' do
+			%i.icon-remove
+			Delete
+
 %h1= @event.title
 %h2= "#" + @event.slug
 
@@ -11,6 +22,7 @@
 
 %p= raw RedCloth.new(@event.description).to_html
 
-- if current_user && current_user.admin? then
-	= link_to 'Edit', edit_event_path(@event), :class => 'btn'
-	= link_to 'Delete', @event, :method => :delete, :data => { :confirm => "This will delete the event and all associated data"}, :class => 'btn btn-danger'
+- if current_user then
+	/ FIXME: check that event is open 
+	/ FIXME: set link to attendee registration
+	= link_to 'Register', edit_event_path(@event), :class => 'btn btn-primary'
