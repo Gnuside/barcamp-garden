@@ -20,11 +20,16 @@ class SlotsController < ApplicationController
 	# GET /events/:event_id/slots/new
 	def new
 		@event = Event.find(params[:event_id])
+		@day = Date.strptime(params[:day])
 		@slot = @event.slots.new
 
+		unless @day.to_date.between? @event.dtstart.to_date, @event.dtend.to_date then
+			raise "Not in event range"
+		end
+
 		# Pre-fill with event info
-		@slot.dtstart = @event.dtstart
-		@slot.dtend = @event.dtend
+		@slot.dtstart = @day
+		@slot.dtend = @day
 	end
 
 
