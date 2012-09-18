@@ -3,4 +3,6 @@ class Slot < ActiveRecord::Base
 
   belongs_to :event
   has_many :workshops, :dependent => :destroy
+
+  # FIXME: validate dtend has the same date as dtstart
 end
