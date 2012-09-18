@@ -11,9 +11,6 @@
 # Ignore local config files
 /config/omniauth.yml
 
-# Ignore Gemfile locked version
-Gemfile.lock
-
 # Ignore the default SQLite database.
 /db/*.sqlite3
 
