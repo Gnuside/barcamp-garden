@@ -10,13 +10,16 @@
 			Delete
 
 %h1= @event.title
-%h2= "#" + @event.slug
 
-%div
-	From:
-	%span.dtstart= @event.dtstart
-	\- To:
-	%span.dtend= @event.dtend
+.socialmedia.label.label-info.pull-right
+	= "#" + @event.slug
+
+.datetime
+	From :
+	%span.dtstart= @event.dtstart.to_formatted_s(:short)
+	&dash;
+	To :
+	%span.dtend= @event.dtend.to_formatted_s(:short)
 
 %p= raw BlueCloth.new(@event.description).to_html
 

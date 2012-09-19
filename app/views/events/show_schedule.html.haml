@@ -11,6 +11,10 @@
 			Delete
 
 %h1= @event.title
+
+.socialmedia.label.label-info.pull-right
+	= "#" + @event.slug
+
 %h2 Schedule
 
 - @event.dtstart.to_date.upto(@event.dtend.to_date) do |day|
