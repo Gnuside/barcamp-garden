@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 	# FIXME: fix signin/signup forms
-	before_filter :authenticate_user!	
+	before_filter :authenticate_user!, :except => [:show]
 	
 	# GET /users
 	# GET /users.json
