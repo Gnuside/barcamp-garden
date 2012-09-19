@@ -72,4 +72,7 @@ class WorkshopsController < ApplicationController
 
 		redirect_to event_schedule_url(@event)
 	end
+
+	private
+
 end

@@ -1,14 +1,35 @@
+.btn-group.pull-right
+	- if current_user && current_user.admin? then
+		// FIXME: create a real sync action
+		= link_to 'Sync from pad', '/sync', :class=> 'btn'
+		= link_to edit_event_workshop_path(@event,@workshop), :class => 'btn' do
+			%i.icon-edit
+			Edit
+		= link_to event_workshop_path(@event,@workshop), :method => :delete, 
+			:data => { :confirm => "This will delete the event and all associated data"}, 
+			:class => 'btn btn-danger' do
+			%i.icon-remove
+			Delete
 
-%p
-  %b Title:
-  = @workshop.title
-%p
-  %b Description:
-  = @workshop.description
-%p
-  %b Slug:
-  = @workshop.slug
+%h1= @event.title
 
-= link_to 'Edit', edit_event_workshop_path(@event,@workshop)
-\|
-= link_to 'Back', event_schedule_path(@event)
+%h2
+	= @workshop.title
+	\##{@workshop.slug}
+
+%h3 
+	From :
+	= @workshop.slot.dtstart.to_formatted_s(:short)
+	&dash;
+	To :
+	= @workshop.slot.dtend.to_formatted_s(:short)
+	&dash;
+	In : 
+	= @workshop.room.name
+
+%iframe{:width=>"100%", :height=>"600", :frameborder=>"no",
+	:src=>event_workshop_pad_url(@event,@workshop)}
+
+%p= raw BlueCloth.new(@workshop.description).to_html
+
+= link_to 'Contribute', event_workshop_pad_url(@event,@workshop), :target=>'_blank', :class => 'btn btn-primary'
