@@ -39,11 +39,25 @@ class WorkshopsController < ApplicationController
 		pp params
 		@event = Event.find(params[:event_id])
 		@workshop = @event.workshops.new(params[:workshop])
+ 
+		# prefill pad on-the-fly
+		description = "## #{@workshop.title}\n\n" +
+			"Hashtag : ##{@workshop.slug}\n\n" +
+		@workshop.description
+
+		@workshop.description = description
 
 		if @workshop.save
 			# FIXME: create etherpad text with workshop description
 			redirect_to event_schedule_url(@event), 
-				notice: 'Room was successfully created.'
+				notice: 'Workshop was successfully created.'
+
+			# Connect to your Etherpad Lite instance
+			ether = EtherpadLite.connect(ETHERPAD_URL, ETHERPAD_APIKEY)
+
+			# Get a Pad (or create one if it doesn't exist)
+			pad = ether.pad(view_context.event_workshop_pad_name(@event,@workshop))
+			pad.text = @workshop.description
 		else
 			render action: "new"
 		end
@@ -73,6 +87,25 @@ class WorkshopsController < ApplicationController
 		redirect_to event_schedule_url(@event)
 	end
 
+	def sync
+		@event = Event.find(params[:event_id])
+		@workshop = @event.workshops.find(params[:workshop_id])
+
+		# Connect to your Etherpad Lite instance
+		ether = EtherpadLite.connect(ETHERPAD_URL, ETHERPAD_APIKEY)
+
+		# Get a Pad (or create one if it doesn't exist)
+		pad = ether.pad(view_context.event_workshop_pad_name(@event,@workshop))
+
+		#description = ReverseMarkdown.parse pad.html
+		#puts description
+		description = pad.text
+
+		@workshop.description = description
+		@workshop.save
+
+		redirect_to event_workshop_url(@event,@workshop)
+	end
 	private
 
 end

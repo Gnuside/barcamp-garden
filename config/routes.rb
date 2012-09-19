@@ -25,7 +25,11 @@ BarcampGarden::Application.routes.draw do
   resources :events do
 	  resources :rooms
 	  resources :slots
-	  resources :workshops
+	  resources :workshops do 
+		  match '/sync' => 'workshops#sync',
+			  :via => [:get],
+			  :as => :sync
+	  end
 	  resources :remote_media
   end
 
