@@ -2,15 +2,20 @@
 
 %table
 	%tr
+		%th Avatar
 		%th Email
+		%th 
 
 	- @users.each do |user|
 		%tr
 			%td
+				= image_tag avatar_url(user)
+			%td
+				= link_to user.email, user
+			%td
 				.btn-group.pull-right
 					= link_to '', edit_user_path(user), :class=>"btn btn-small icon-edit"
 					= link_to '', user, method: :delete, :class => "btn btn-small icon-remove", data: { confirm: 'Are you sure?' }
-				= link_to user.email, user
 
 %br
 

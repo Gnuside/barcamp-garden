@@ -8,7 +8,8 @@
 
   .field
     = f.label :dtstart
-    = f.datetime_select :dtstart
+    = f.date_select :dtstart
+    = f.time_select :dtstart, :ignore_date => true
   .field
     = f.label :dtend
     = f.datetime_select :dtend
