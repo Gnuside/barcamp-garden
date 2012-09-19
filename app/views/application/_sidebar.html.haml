@@ -22,9 +22,8 @@
 				%li= link_to "Events", events_url
 				%li= link_to "Users", users_url
 	
-	.well.sidebar-nav
-		%ul.nav.nav-list
-			%li.nav-header Sponsors
-			%li Sponsor 1 with logo
-			%li ...
-			%li Sponsor N with logo
+	- if content_for? :sidebar_sponsors then
+		.well.sidebar-nav
+			%ul.nav.nav-list
+				%li.nav-header Sponsors
+				= yield :sidebar_sponsors

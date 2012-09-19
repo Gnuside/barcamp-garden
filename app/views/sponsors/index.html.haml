@@ -1,0 +1,21 @@
+%h1 Listing sponsors
+
+%table
+	%tr
+		%th Logo
+		%th Name
+		%th
+		%th
+		%th
+
+	- @sponsors.each do |sponsor|
+		%tr
+			%td= image_tag sponsor.logo.url(:thumb)
+			%td= sponsor.name
+			%td= link_to 'Show', event_sponsor_path(@event,sponsor)
+			%td= link_to 'Edit', edit_event_sponsor_path(@event,sponsor)
+			%td= link_to 'Destroy', event_sponsor_path(@event,sponsor), method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Sponsor', new_event_sponsor_path(@event)

@@ -2,6 +2,7 @@ class WorkshopsController < ApplicationController
 	before_filter :authenticate_user!, :except => [
 		:index, :show
 	]
+	layout 'events'
 
 	# GET /events/:id/workshops
 	def index

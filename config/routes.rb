@@ -31,6 +31,7 @@ BarcampGarden::Application.routes.draw do
 			  :as => :sync
 	  end
 	  resources :remote_media
+	  resources :sponsors
   end
 
   resources :users

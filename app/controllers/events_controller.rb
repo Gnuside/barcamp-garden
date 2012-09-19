@@ -8,6 +8,7 @@ class EventsController < ApplicationController
 		:show_featured_schedule,
 		:show_schedule
 	]
+	layout 'events'
 
 	# GET /events
 	# GET /events.json

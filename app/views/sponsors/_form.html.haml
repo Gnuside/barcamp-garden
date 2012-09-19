@@ -1,0 +1,16 @@
+= form_for([@event,@sponsor], :html => { :multipart => true }) do |f|
+	- if @sponsor.errors.any?
+		#error_explanation
+			%h2= "#{pluralize(@sponsor.errors.count, "error")} prohibited this sponsor from being saved:"
+			%ul
+				- @sponsor.errors.full_messages.each do |msg|
+					%li= msg
+
+	.field
+		= f.label :name
+		= f.text_field :name
+	.field
+		= f.label :logo
+		= f.file_field :logo
+	.actions
+		= f.submit 'Save'
