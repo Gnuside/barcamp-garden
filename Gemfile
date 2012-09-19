@@ -90,6 +90,9 @@ gem 'capistrano'
 # Wiki rendering
 gem 'bluecloth'
 
+# File attachments
+gem "paperclip", "~> 3.2"
+
 # To use debugger
 # gem 'debugger'
 
