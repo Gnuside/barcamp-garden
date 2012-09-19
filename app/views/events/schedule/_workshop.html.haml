@@ -5,7 +5,7 @@
 			new_event_workshop_path(@event,:room_id=>room.id,:slot_id=>slot.id),
 			:class => 'btn btn-primary'
 	- else
-		No workshop (yet!)
+		/ no workshop
 - else
 	- if current_user && current_user.admin? then
 		.btn-group

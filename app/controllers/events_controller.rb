@@ -2,9 +2,11 @@ class EventsController < ApplicationController
 	before_filter :authenticate_user!, :except => [
 		:index, 
 		:show, 
+		:show_featured, 
 		:show_featured_missing, 
 		:show_featured_remote_media, 
-		:show_featured_schedule
+		:show_featured_schedule,
+		:show_schedule
 	]
 
 	# GET /events

@@ -32,9 +32,9 @@
 							:method => :delete,
 							:confirm=>'Delete workshop Are you sure?',
 							:class => 'btn btn-mini icon-remove'
-					= slot.dtstart.to_time.to_formatted_s(:time)
-					%br/
-					= slot.dtend.to_time.to_formatted_s(:time)
+				= slot.dtstart.to_time.to_formatted_s(:time)
+				%br/
+				= slot.dtend.to_time.to_formatted_s(:time)
 
 			- @rooms.each do |room|
 				%td 
