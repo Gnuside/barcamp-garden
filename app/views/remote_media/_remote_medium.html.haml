@@ -1,0 +1,8 @@
+- if remote_medium.platform == 'flickr' then
+	%li.span3{ :"data-id" => remote_medium.id }
+		%img{:src=>remote_medium.url}
+- elsif remote_medium.platform == 'twitter' then
+	%li.span3{ :"data-id" => remote_medium.id }
+		FIX THE TEXT
+- else
+	%li remote_medium.platform

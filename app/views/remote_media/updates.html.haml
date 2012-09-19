@@ -1,7 +1,2 @@
 - @remote_media.each do |remote_medium|
-	- if remote_medium.platform == 'flickr'
-		%li.span3{ :"data-id" => remote_medium.id }
-			%img{:src=>remote_medium.url}
-	- elsif remote_medium.platform == 'twitter'
-	- else
-		%li remote_medium.platform
+	= render :partial => '_remote_medium', :locals => { :remote_medium => remote_medium }

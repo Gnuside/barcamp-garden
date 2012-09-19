@@ -10,6 +10,8 @@ class RemoteMediaController < ApplicationController
 	end
 
 	def show
+		@event = Event.find(params[:event_id])
+		@remote_media = @event.remote_media.order("id ASC");
 	end
 
 	def updates

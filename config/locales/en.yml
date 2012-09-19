@@ -9,6 +9,7 @@ en:
     sidebar:
       currentevent: "Current event"
       presentation: "Presentation"
+      attendees: "Attendees"
       schedule: "Schedule"
       mediastream: "Media Stream"
       
