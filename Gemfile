@@ -89,6 +89,7 @@ gem 'capistrano'
 
 # Wiki rendering
 gem 'bluecloth'
+# gem 'html2markdown'
 
 # File attachments
 gem "paperclip", "~> 3.2"
