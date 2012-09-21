@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Comment:
+  = @workshop_attendee.comment
+%p
+  %b User:
+  = @workshop_attendee.user
+%p
+  %b Workshop:
+  = @workshop_attendee.workshop
+
+= link_to 'Edit', edit_workshop_attendee_path(@workshop_attendee)
+\|
+= link_to 'Back', workshop_attendees_path
