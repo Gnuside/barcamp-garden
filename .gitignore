@@ -18,4 +18,4 @@
 /log/*.log
 /log/*.pid
 /tmp
-
+/public/system
