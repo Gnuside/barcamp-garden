@@ -59,6 +59,15 @@ class EventsController < ApplicationController
 		redirect_to :action => "show_schedule", :id => @event.id
 	end
 
+	def featured_attendees
+		@event = Event.first
+		if @event.nil? then
+			redirect_to :action => "show_featured_missing"
+			return
+		end
+
+		redirect_to :controller => "event_attendees", :action => "index", :event_id => @event.id
+	end
 
 	# GET /events/:id/schedule
 	def show_schedule

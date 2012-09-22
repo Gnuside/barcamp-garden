@@ -1,8 +1,8 @@
 class User < ActiveRecord::Base
   has_many :authentications
 
-  has_many :event_attendee, :dependent => :destroy
-  has_many :workshop_attendee, :dependent => :destroy
+  has_many :event_attendees, :dependent => :destroy
+  has_many :workshop_attendees, :dependent => :destroy
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,

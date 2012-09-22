@@ -10,6 +10,6 @@
   %b Event:
   = @event_attendee.event
 
-= link_to 'Edit', edit_event_attendee_path(@event_attendee)
+= link_to 'Edit', edit_event_attendee_path(@event,@event_attendee)
 \|
-= link_to 'Back', event_attendees_path
+= link_to 'Back', event_attendees_path(@event)

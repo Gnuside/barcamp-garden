@@ -27,4 +27,4 @@
 - if current_user then
 	/ FIXME: check that event is open 
 	/ FIXME: set link to attendee registration
-	= link_to 'Register', edit_event_path(@event), :class => 'btn btn-primary'
+	= link_to 'Register', register_event_attendees_path(@event), :class => 'btn btn-primary'

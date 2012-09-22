@@ -7,7 +7,7 @@ class Event < ActiveRecord::Base
   has_many :sponsors, :dependent => :destroy
   has_many :workshops, :dependent => :destroy
 
-  has_many :event_attendee, :dependent => :destroy
+  has_many :attendees, :dependent => :destroy, :class_name => 'EventAttendee'
 
   validates :slug, :format => { :with => /^[a-z0-9]+$/ },
 	  :length => { :minimum => 6 }

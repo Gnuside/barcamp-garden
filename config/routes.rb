@@ -1,4 +1,5 @@
 BarcampGarden::Application.routes.draw do
+
   match '/events/featured_schedule' => 'events#show_featured_schedule', 
 	  :via => [:get],
 	  :as => :featured_schedule
@@ -21,8 +22,16 @@ BarcampGarden::Application.routes.draw do
 
   match '/schedule' => 'events#show_featured_schedule'
 
+  match '/attendees' => 'events#featured_attendees',
+	  :via => [:get],
+	  :as => :featured_attendees
+
   resources :events do
-	  resources :event_attendees
+	  resources :event_attendees, :path => :attendees, :as => :attendees do
+		  collection do
+			  match '/register' => 'event_attendees#register'
+		  end
+	  end
 	  resources :rooms
 	  resources :slots
 	  resources :workshops do 

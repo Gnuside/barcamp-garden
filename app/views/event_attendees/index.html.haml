@@ -1,10 +1,10 @@
-%h1 Listing event_attendees
+%h1= @event.title
+%h2 Listing attendees
 
 %table
   %tr
     %th Comment
     %th User
-    %th Event
     %th
     %th
     %th
@@ -12,12 +12,12 @@
   - @event_attendees.each do |event_attendee|
     %tr
       %td= event_attendee.comment
-      %td= event_attendee.user
-      %td= event_attendee.event
-      %td= link_to 'Show', event_attendee
-      %td= link_to 'Edit', edit_event_attendee_path(event_attendee)
-      %td= link_to 'Destroy', event_attendee, method: :delete, data: { confirm: 'Are you sure?' }
+      %td= event_attendee.user.email
+      %td= link_to 'Show', event_attendee_path(@event,event_attendee)
+      %td= link_to 'Edit', edit_event_attendee_path(@event,event_attendee)
+      %td= link_to 'Destroy', event_attendee_path(@event,event_attendee), method: :delete, data: { confirm: 'Are you sure?' }
 
 %br
 
-= link_to 'New Event attendee', new_event_attendee_path
+= link_to 'Register', register_event_attendees_path(@event), :class => 'btn btn-primary'
+= link_to 'New Event attendee', new_event_attendee_path(@event), :class => 'btn'
