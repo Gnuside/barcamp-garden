@@ -1,4 +1,12 @@
 %h1 Editing workshop
 
+.location
+	In : #{@workshop.room.name}
+
+.datetime
+	From : #{@workshop.slot.dtstart.to_formatted_s(:short)}
+	&dash;
+	To : #{@workshop.slot.dtstart.to_formatted_s(:short)}
+
 = render 'form'
 
