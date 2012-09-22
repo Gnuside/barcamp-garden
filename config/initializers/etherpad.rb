@@ -1,5 +1,10 @@
 
 # FIXME: improve config
-ETHERPAD_URL="http://localhost.com:9001"
-ETHERPAD_APIKEY=File.read("/usr/share/etherpad-lite/APIKEY.txt")
+ETHERPAD_URL=ENV['BARCAMPGARDEN_ETHERPAD_URL'] || "http://localhost.com:9001"
+ETHERPAD_APIKEY_FILE="/usr/share/etherpad-lite/APIKEY.txt"
+ETHERPAD_APIKEY=ENV['BARCAMPGARDEN_ETHERPAD_APIKEY'] || (
+	if File.exist? ETHERPAD_APIKEY_FILE then
+		File.read(ETHERPAD_APIKEY_FILE)
+	end
+	)
 
