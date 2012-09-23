@@ -1,4 +1,7 @@
-%h1 #{@event.title} (media stream)
+- content_for :title do
+	= @event.title + " : " + t('events.mediastream')
+
+%h1= @event.title + " : " + t('events.mediastream')
 
 %ul.media-list
 

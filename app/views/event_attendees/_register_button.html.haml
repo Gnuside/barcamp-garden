@@ -1,0 +1,7 @@
+- if current_user 
+	- if current_user.events.find(@event)
+		= link_to 'Unregister', unregister_event_attendees_path(@event), :class => 'btn btn-warning'
+	-else 
+		= link_to 'Register', register_event_attendees_path(@event), :class => 'btn btn-primary'
+- else 
+	= link_to 'Register', register_event_attendees_path(@event), :class => 'btn btn-primary'

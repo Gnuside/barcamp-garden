@@ -1,35 +1,41 @@
 BarcampGarden::Application.routes.draw do
 
-  match '/events/featured_schedule' => 'events#show_featured_schedule', 
+  match '/events/featured_schedule' => 'events#featured_schedule', 
 	  :via => [:get],
 	  :as => :featured_schedule
 
-  match '/events/:id/schedule' => 'events#show_schedule', 
+  match '/events/:id/schedule' => 'events#schedule', 
 	  :via => [:get],
 	  :as => :event_schedule
 
-  match '/events/featured_missing' => 'events#show_featured_missing', 
+  match '/events/featured_missing' => 'events#featured_missing', 
 	  :via => [:get],
 	  :as => :featured_missing
 
-  match '/mediastream' => 'events#show_featured_remote_media',
-	  :via => [:get],
-	  :as => :featured_media
 
   match '/events/:event_id/remote_media_updates(.:format)' => 'remote_media#updates',
 	  :via => [:get],
 	  :as => :event_remote_media_updates
 
-  match '/schedule' => 'events#show_featured_schedule'
+
+  match '/mediastream' => 'events#featured_remote_media',
+	  :via => [:get],
+	  :as => :featured_media
+
+  match '/schedule' => 'events#featured_schedule',
+	  :via => [:get],
+	  :as => :featured_schedule
+
 
   match '/attendees' => 'events#featured_attendees',
 	  :via => [:get],
 	  :as => :featured_attendees
 
   resources :events do
-	  resources :event_attendees, :path => :attendees, :as => :attendees do
+	  resources :event_attendees, :path => :attendees, :as => :attendees, :controller => :event_attendees do
 		  collection do
 			  match '/register' => 'event_attendees#register'
+			  match '/unregister' => 'event_attendees#unregister'
 		  end
 	  end
 	  resources :rooms
@@ -104,7 +110,7 @@ BarcampGarden::Application.routes.draw do
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
   #root :to => 'high_voltage/pages#show', :id => 'index'
-  root :to => 'events#show_featured'
+  root :to => 'events#featured'
 
   # See how all your routes lay out with "rake routes"
 

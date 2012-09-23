@@ -1,4 +1,7 @@
 class EventAttendeesController < ApplicationController
+
+	#before_filter :authenticate_user!, :except => [:show,:index]
+	
 	# GET /event_attendees
 	# GET /event_attendees.json
 	def index
@@ -24,8 +27,6 @@ class EventAttendeesController < ApplicationController
 	end
 
 	def register
-		require 'pp'
-		pp params
 		@event = Event.find(params[:event_id])
 		@event_attendee = @event.attendees.new
 		@event_attendee.event = @event
@@ -40,6 +41,11 @@ class EventAttendeesController < ApplicationController
 				format.json { render json: @event_attendee.errors, status: :unprocessable_entity }
 			end
 		end
+	end
+
+	def unregister
+		@event = Event.find(params[:event_id])
+		@event_attendee = @event.attendees.find(current_user)
 	end
 
 	# GET /event_attendees/new
