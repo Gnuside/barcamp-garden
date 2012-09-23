@@ -1,19 +1,23 @@
-= form_for @event_attendee do |f|
-  - if @event_attendee.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@event_attendee.errors.count, "error")} prohibited this event_attendee from being saved:"
-      %ul
-        - @event_attendee.errors.full_messages.each do |msg|
-          %li= msg
+/= form_for([@event,@attendee], :url => {:controller => 'event_attendees', :action=>:create },
+= form_for([@event,@attendee], :url => event_attendee_path(@event,@attendee, :action=>:create),
+	:html => {:class => "form-horizontal"}) do |f|
+	- if @attendee.errors.any?
+		#error_explanation
+			%h2= "#{pluralize(@attendee.errors.count, "error")} prohibited this event_attendee from being saved:"
+			%ul
+				- @attendee.errors.full_messages.each do |msg|
+					%li= msg
 
-  .field
-    = f.label :comment
-    = f.text_area :comment
-  .field
-    = f.label :user
-    = f.text_field :user
-  .field
-    = f.label :event
-    = f.text_field :event
-  .actions
-    = f.submit 'Save'
+	= f.hidden_field :event_id, :value => @event.id
+	.control-group
+		= f.label :user, :class => 'control-label' do
+			Email
+		.controls
+			= f.select :user_id, @users_not_attending.map{ |user| [user.name, user.id] }, {:include_blank => true}
+	.control-group
+		= f.label :comment, :class=>'control-label'
+		.controls
+			= f.text_area :comment, :class=>'input-xxlarge'
+	.control-group
+		.controls
+			= f.submit 'Save', :class=>'btn btn-primary'
