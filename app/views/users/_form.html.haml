@@ -10,17 +10,20 @@
 		= f.label :email, :class=>"control-label"
 		.controls
 			= f.text_field :email, :class=>"input-xxlarge", :placeholder => "john.smith@example.com"
+	
+	- if @user.id then
+		.control-group
+			= f.label :password, :class=>'control-label'
+			.controls
+				= f.password_field :password, :autocomplete => "off"
+				.help-inline (leave blank if you don't want to change it)
 
-	.control-group
-		= f.label :password, :class=>'control-label'
-		.controls
-			= f.password_field :password, :autocomplete => "off"
-			.help-inline (leave blank if you don't want to change it)
-
-	.control-group
-		= f.label :password_confirmation, :class=>'control-label'
-		.controls
-			= f.password_field :password_confirmation
+		.control-group
+			= f.label :password_confirmation, :class=>'control-label'
+			.controls
+				= f.password_field :password_confirmation
+	- else
+		= f.hidden_field :nopassword, value: "nopassword"
 
 	.control-group
 		= f.label :admin, :class=>"control-label"
