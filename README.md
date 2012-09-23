@@ -41,3 +41,20 @@ Update the database
   rake db:migrate
 
 
+Credits
+-------
+
+![Gnuside](http://www.gnuside.com/wp-content/themes/gnuside-ignition-0.2-1-g0d0a5ed/images/logo-whitebg-128.png)
+
+Got questions? Need help? Tweet at [@gnuside](http://twitter.com/gnuside).
+
+BarcampGarden is maintained and funded by [Gnuside, inc](http://gnuside.com)
+
+The names and logos for thoughtbot are trademarks of Gnuside, inc.
+
+License
+-------
+
+BarcampGarden is Copyright © 2012 Gnuside. 
+It is free software, and may be redistributed under the terms specified in the LICENSE file.
+
