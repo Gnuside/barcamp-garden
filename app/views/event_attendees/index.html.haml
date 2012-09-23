@@ -13,7 +13,7 @@
 			.avatar= image_tag avatar_url(attendee.user,:thumb)
 			.comment= attendee.comment
 			.name
-				= link_to user_path(attendee.user), :class => 'btn btn-link' do
+				= link_to user_path(attendee.user) do
 					= attendee.user.email
 			- if current_user && current_user.admin?
 				.btn_group.pull-right
