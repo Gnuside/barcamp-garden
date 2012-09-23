@@ -1,3 +1,25 @@
 // Place all the styles related to the event_attendees controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import 'bootstrap/mixins';
+
+.attendee-list {
+
+    .attendee {
+	@include clearfix();
+	box-shadow: 0 .1rem .25rem rgba(0,0,0,0.25);
+	box-sizing: border-box;
+	border-radius: 0.25rem;
+	padding: 0.5rem;
+
+
+	.avatar {
+	    display: block;
+	    float: left;
+	    width: 5rem;
+	    height: 5rem;
+	}
+
+    }
+}

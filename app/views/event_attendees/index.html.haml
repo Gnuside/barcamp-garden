@@ -5,25 +5,18 @@
 	.btn_group.pull-right
 		= link_to 'Add attendee', new_event_attendee_path(@event), :class => 'btn'
 
-%h1= @event.title
-%h2 Listing attendees
+%h1= yield :title
 
-%table
-	%tr
-		%th Avatar
-		%th Comment
-		%th User
-		%th
-
+.attendee-list.row
 	- @attendees.each do |attendee|
-		%tr
-			%td
-				= image_tag avatar_url(attendee.user)
-			%td= attendee.comment
-			%td= attendee.user.email
-			%td
-				.btn-group
-					= link_to 'Show', user_path(attendee.user), :class => 'btn'
+		.span4.attendee
+			.avatar= image_tag avatar_url(attendee.user)
+			.comment= attendee.comment
+			.name
+				= link_to user_path(attendee.user), :class => 'btn btn-link' do
+					= attendee.user.email
+			- if current_user && current_user.admin?
+				.btn_group.pull-right
 					= link_to 'Destroy', event_attendee_path(@event,attendee), method: :delete, data: { confirm: 'Are you sure?' }, :class=> 'btn'
 
 %br
