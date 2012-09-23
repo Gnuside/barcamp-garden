@@ -1,6 +1,6 @@
 class EventAttendeesController < ApplicationController
 
-	before_filter :authenticate_user!, :except => [:show,:index]
+	before_filter :authenticate_user!, :except => [:index]
 	
 	# GET /event_attendees
 	# GET /event_attendees.json
@@ -14,18 +14,6 @@ class EventAttendeesController < ApplicationController
 		end
 	end
 
-	# GET /event_attendees/1
-	# GET /event_attendees/1.json
-	def show
-		@event = Event.find(params[:event_id])
-		@attendee = @event.attendees.find(params[:id])
-
-		respond_to do |format|
-			format.html # show.html.erb
-			format.json { render json: @attendee }
-		end
-	end
-
 	def register
 		@event = Event.find(params[:event_id])
 		@attendee = @event.attendees.new
@@ -34,7 +22,7 @@ class EventAttendeesController < ApplicationController
 
 		respond_to do |format|
 			if @attendee.save
-				format.html { redirect_to event_attendee_url(@event,@attendee), notice: 'Event attendee was successfully created.' }
+				format.html { redirect_to event_attendees_url(@event), notice: 'Registration successful.' }
 				format.json { render json: @attendee, status: :created, location: @attendee }
 			else
 				format.html { render action: "new" }
@@ -45,7 +33,13 @@ class EventAttendeesController < ApplicationController
 
 	def unregister
 		@event = Event.find(params[:event_id])
-		@attendee = @event.attendees.find(current_user)
+		@attendee = @event.attendees.where('user_id = ?',current_user.id)
+		@attendee.destroy(@attendee)
+		
+		respond_to do |format|
+			format.html { redirect_to event_attendees_url(@event), notice: 'Unregistration successful.' }
+			format.json { head :no_content }
+		end
 	end
 
 	# GET /event_attendees/new
@@ -69,7 +63,7 @@ class EventAttendeesController < ApplicationController
 
 		respond_to do |format|
 			if @attendee.save
-				format.html { redirect_to @attendee, notice: 'Event attendee was successfully created.' }
+				format.html { redirect_to event_attendees_url(@event), notice: 'Event attendee was successfully created.' }
 				format.json { render json: @attendee, status: :created, location: @attendee }
 			else
 				format.html { render action: "new" }
@@ -102,7 +96,7 @@ class EventAttendeesController < ApplicationController
 		@attendee.destroy
 
 		respond_to do |format|
-			format.html { redirect_to event_attendees_url }
+			format.html { redirect_to event_attendees_url(@event) }
 			format.json { head :no_content }
 		end
 	end

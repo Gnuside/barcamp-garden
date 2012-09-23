@@ -19,4 +19,8 @@ class User < ActiveRecord::Base
   def name
 	  self.email
   end
+
+  def attends_to? event
+	  self.events.where('event_id = ?',event.id).first
+  end
 end
