@@ -24,14 +24,16 @@ class EventAttendeesController < ApplicationController
 	end
 
 	def register
+		require 'pp'
+		pp params
 		@event = Event.find(params[:event_id])
 		@event_attendee = @event.attendees.new
-		@event_attendee.event_id = @event.id
-		@event_attendee.user_id = @user.id
+		@event_attendee.event = @event
+		@event_attendee.user = current_user
 
 		respond_to do |format|
 			if @event_attendee.save
-				format.html { redirect_to @event_attendee, notice: 'Event attendee was successfully created.' }
+				format.html { redirect_to event_attendee_url(@event,@event_attendee), notice: 'Event attendee was successfully created.' }
 				format.json { render json: @event_attendee, status: :created, location: @event_attendee }
 			else
 				format.html { render action: "new" }
