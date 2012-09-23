@@ -10,14 +10,16 @@
 .attendee-list.row
 	- @attendees.each do |attendee|
 		.span4.attendee
-			.avatar= image_tag avatar_url(attendee.user)
+			.avatar= image_tag avatar_url(attendee.user,:thumb)
 			.comment= attendee.comment
 			.name
 				= link_to user_path(attendee.user), :class => 'btn btn-link' do
 					= attendee.user.email
 			- if current_user && current_user.admin?
 				.btn_group.pull-right
-					= link_to 'Destroy', event_attendee_path(@event,attendee), method: :delete, data: { confirm: 'Are you sure?' }, :class=> 'btn'
+					= link_to event_attendee_path(@event,attendee), method: :delete, data: { confirm: 'Are you sure?' }, :class=> 'btn' do
+						%i.icon-remove
+						Unsubscribe
 
 %br
 
