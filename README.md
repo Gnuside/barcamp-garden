@@ -29,7 +29,15 @@ Install all required dependencies
 
   bundle install --path vendor/bundle
 
+
+Installation
+
   rake db:migrate
   rake db:setup:admin
+
+
+Update the database
+
+  rake db:migrate
 
 
