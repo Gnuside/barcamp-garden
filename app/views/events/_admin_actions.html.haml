@@ -3,8 +3,3 @@
 		= link_to edit_event_path(@event), :class => 'btn' do
 			%i.icon-edit
 			Edit
-		= link_to @event, :method => :delete, 
-			:data => { :confirm => "This will delete the event and all associated data"}, 
-			:class => 'btn btn-danger' do
-			%i.icon-remove
-			Delete
