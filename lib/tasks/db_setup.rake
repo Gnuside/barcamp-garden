@@ -25,8 +25,9 @@ namespace :db do
 			end
 
 			admin = User.create(
-				#:login => "admin",
-				#:name => "My Admin",
+				:login => "admin",
+				:firstname => "Super",
+				:lastname => "Admin",
 				:email => "admin@example.com",
 				:password => "admin",
 				:password_confirmation => "admin"
