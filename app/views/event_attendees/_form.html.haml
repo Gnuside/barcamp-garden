@@ -1,5 +1,5 @@
-/= form_for([@event,@attendee], :url => {:controller => 'event_attendees', :action=>:create },
-= form_for([@event,@attendee], :url => event_attendee_path(@event,@attendee, :action=>:create),
+/= form_for([@event,@attendee], :url => event_attendee_path(@event,@attendee, :action=>:create),
+= form_for([@event,@attendee], :url => {:controller => 'event_attendees', :action=>:create },
 	:html => {:class => "form-horizontal"}) do |f|
 	- if @attendee.errors.any?
 		#error_explanation
@@ -13,7 +13,7 @@
 		= f.label :user, :class => 'control-label' do
 			Email
 		.controls
-			= f.select :user_id, @users_not_attending.map{ |user| [user.name, user.id] }, {:include_blank => true}
+			= select :attendee, :user_id, @users_not_attending.map{ |user| [user.name, user.id] }, {:include_blank => true}
 	.control-group
 		= f.label :comment, :class=>'control-label'
 		.controls
