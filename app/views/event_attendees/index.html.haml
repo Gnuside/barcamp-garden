@@ -9,7 +9,7 @@
 
 .attendee-list.row
 	- @attendees.each do |attendee|
-		.span4.attendee
+		.span3.attendee
 			.avatar= image_tag avatar_url(attendee.user,:thumb)
 			.comment= attendee.comment
 			.name
