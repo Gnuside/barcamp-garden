@@ -38,3 +38,17 @@
 	}
     }
 }
+
+.event-index {
+    .event-past {
+	background-color: #ddd;
+    }
+
+    .event-current {
+	background-color: #fca;
+    }
+
+    .event-upcoming {
+	background-color: #ffd;
+    }
+}

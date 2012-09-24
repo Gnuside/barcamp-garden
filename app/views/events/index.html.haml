@@ -1,20 +1,35 @@
-%h1 Listing events
+%h1 All events
 
-%table
-	%tr
-		%th Title
-		%th Date start
-		%th Date end
-
-	- @events.each do |event|
+.row
+	%table.event-index.span8
 		%tr
-			%td
-				= link_to event.title, event
-				= link_to '', edit_event_path(event), :class=>"btn btn-small icon-edit"
-				= link_to '', event, method: :delete, :class => "btn btn-small icon-remove", data: { confirm: 'Are you sure?' }
-			%td= event.dtstart
-			%td= event.dtend
+			%th Title
+			%th Status
+			%th Date start
+			%th Date end
+			- if current_user && current_user.admin? 
+				%th
 
-%br
+		- @events.each do |event|
+			%tr
+				%td
+					= link_to event.title, event, :class=>'btn btn-link'
+				%td
+					- if event.past? then
+						%span.label Past
+					- elsif event.current? then
+						%span.label.label-warning Active
+					- else 
+						%span.label.label-info Upcoming
 
-= link_to 'New Event', new_event_path, :class=>"btn"
+
+				%td= event.dtstart.to_formatted_s(:short)
+				%td= event.dtend.to_formatted_s(:short)
+				- if current_user && current_user.admin? 
+					%td.btn-group
+						= link_to '', edit_event_path(event), :class=>"btn btn-mini icon-edit"
+						= link_to '', event, method: :delete, :class => "btn btn-mini btn-danger icon-remove", 
+							data: { confirm: "Are you sure to delete event '#{event.title}' ?" }
+
+- if current_user && current_user.admin? 
+	= link_to 'New Event', new_event_path, :class=>"btn"

@@ -1,3 +1,4 @@
+
 class UsersController < ApplicationController
 	# FIXME: fix signin/signup forms
 	before_filter :authenticate_user!, :except => [:show]
@@ -29,6 +30,12 @@ class UsersController < ApplicationController
 	# POST /users
 	# POST /users.json
 	def create
+		if params[:user][:nopassword] then
+			random_string =	(0...8).map{65.+(rand(25)).chr}.join
+			params[:user][:password] = random_string
+			params[:user][:password_confirmation] = random_string
+			params[:user].delete(:nopassword)
+		end
 		@user = User.new(params[:user])
 
 		if @user.save

@@ -13,4 +13,25 @@ class Event < ActiveRecord::Base
 	  :length => { :minimum => 6 }
   validates :title, :length => { :minimum => 6 }
   # FIXME: validate dtend > dtstart
+  #
+  #
+  def current?
+	  now = Time.now.utc
+	  return (self.dtstart <= now && now <= self.dtend )
+  end
+
+  def upcoming?
+	  now = Time.now.utc
+	  return (now < self.dtstart)
+  end
+
+  def past?
+	  now = Time.now.utc
+	  return (self.dtend < now)
+  end
+
+  def validate
+	  errors.add(:start_date, 'must be earlier than end date') if
+	  self.dtstart < self.dtend
+  end
 end

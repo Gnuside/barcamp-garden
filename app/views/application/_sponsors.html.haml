@@ -1,15 +1,16 @@
-- @event.sponsors.each do |sponsor|
-	%li
-		- if current_user && current_user.admin? then
-			.btn-group.pull-right
-				= link_to edit_event_sponsor_path(@event,sponsor), :class => 'btn btn-mini' do
-					%i.icon-edit
-					Edit
-				= link_to event_sponsor_path(@event,sponsor), method: :delete, data: { confirm: 'Are you sure?' },
-					:class => 'btn btn-danger btn-mini' do
-					%i.icon-remove
-					Delete
-		= image_tag sponsor.logo.url(:medium)
+- if @event && @event.id
+	- @event.sponsors.each do |sponsor|
+		%li
+			- if current_user && current_user.admin? then
+				.btn-group.pull-right
+					= link_to edit_event_sponsor_path(@event,sponsor), :class => 'btn btn-mini' do
+						%i.icon-edit
+						Edit
+					= link_to event_sponsor_path(@event,sponsor), method: :delete, data: { confirm: 'Are you sure?' },
+						:class => 'btn btn-danger btn-mini' do
+						%i.icon-remove
+						Delete
+			= image_tag sponsor.logo.url(:medium)
 
-- if current_user && current_user.admin? then
-	%li= link_to 'New Sponsor', new_event_sponsor_path(@event), :class => 'btn'
+	- if current_user && current_user.admin? then
+		%li= link_to 'New Sponsor', new_event_sponsor_path(@event), :class => 'btn'

@@ -34,6 +34,14 @@
 		.controls
 			= f.datetime_select :dtend, :minute_step => 15
 
-	.actions
-		= f.submit 'Save', :class => 'btn btn-primary'
-		= link_to 'Cancel', events_path, :class => 'btn'
+	.control-group
+		.controls
+			= f.submit 'Save', :class => 'btn btn-primary'
+			= link_to 'Cancel', events_path, :class => 'btn'
+
+			.pull-right
+				= link_to @event, :method => :delete, 
+					:data => { :confirm => "This will delete the event and all associated data"}, 
+					:class => 'btn btn-danger' do
+					%i.icon-remove
+					Delete

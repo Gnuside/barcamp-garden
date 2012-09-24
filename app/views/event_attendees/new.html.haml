@@ -1,5 +1,9 @@
-%h1 New event_attendee
+- title = @event.title + " : New attendee"
+- content_for :title do
+	= title
+
+%h1= title
 
 = render 'form'
 
-= link_to 'Back', event_attendees_path
+= link_to 'Back', event_attendees_path(@event)

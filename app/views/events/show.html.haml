@@ -1,14 +1,7 @@
+- content_for :title do
+	= @event.title + " : Presentation"
 
-.btn-group.pull-right
-	- if current_user && current_user.admin? then
-		= link_to edit_event_path(@event), :class => 'btn' do
-			%i.icon-edit
-			Edit
-		= link_to @event, :method => :delete, 
-			:data => { :confirm => "This will delete the event and all associated data"}, 
-			:class => 'btn btn-danger' do
-			%i.icon-remove
-			Delete
+= render :partial => 'events/admin_actions'
 
 %h1= @event.title
 
@@ -24,7 +17,5 @@
 
 %p= raw BlueCloth.new(@event.description).to_html
 
-- if current_user then
-	/ FIXME: check that event is open 
-	/ FIXME: set link to attendee registration
-	= link_to 'Register', register_event_attendees_path(@event), :class => 'btn btn-primary'
+= render :partial => 'event_attendees/register_button'
+

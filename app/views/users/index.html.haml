@@ -9,7 +9,7 @@
 	- @users.each do |user|
 		%tr
 			%td
-				= image_tag avatar_url(user)
+				= image_tag avatar_url(user,:small)
 			%td
 				= link_to user.email, user
 			%td

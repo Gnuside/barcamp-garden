@@ -1,23 +1,27 @@
-%h1= @event.title
-%h2 Listing attendees
+- content_for :title do
+	= @event.title + " : Attendees"
 
-%table
-  %tr
-    %th Comment
-    %th User
-    %th
-    %th
-    %th
+- if current_user && current_user.admin?
+	.btn_group.pull-right
+		= link_to 'Add attendee', new_event_attendee_path(@event), :class => 'btn'
 
-  - @event_attendees.each do |event_attendee|
-    %tr
-      %td= event_attendee.comment
-      %td= event_attendee.user.email
-      %td= link_to 'Show', event_attendee_path(@event,event_attendee)
-      %td= link_to 'Edit', edit_event_attendee_path(@event,event_attendee)
-      %td= link_to 'Destroy', event_attendee_path(@event,event_attendee), method: :delete, data: { confirm: 'Are you sure?' }
+%h1= yield :title
+
+.attendee-list.row
+	- @attendees.each do |attendee|
+		.span3.attendee
+			.avatar= image_tag avatar_url(attendee.user,:thumb)
+			.comment= attendee.comment
+			.name
+				= link_to user_path(attendee.user) do
+					= attendee.user.email
+			- if current_user && current_user.admin?
+				.btn_group.pull-right
+					= link_to event_attendee_path(@event,attendee), method: :delete, data: { confirm: 'Are you sure?' }, :class=> 'btn' do
+						%i.icon-remove
+						Unregister
 
 %br
 
-= link_to 'Register', register_event_attendees_path(@event), :class => 'btn btn-primary'
-= link_to 'New Event attendee', new_event_attendee_path(@event), :class => 'btn'
+= render :partial => 'register_button'
+

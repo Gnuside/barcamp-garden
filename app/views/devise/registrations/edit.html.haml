@@ -2,7 +2,7 @@
 	Edit #{resource_name.to_s.humanize}
 = form_for(resource, :as => resource_name, 
 	:url => registration_path(resource_name), 
-	:html => { :method => :put, :class => "form-horizontal" }) do |f|
+	:html => { :method => :put, :class => "form-horizontal", :multipart => true }) do |f|
 	= devise_error_messages!
 
 	.control-group
@@ -28,15 +28,21 @@
 			.help-inline (we need your current password to confirm your changes)
 
 	.control-group
+		= f.label :avatar, :class => 'control-label'
+		.controls
+			= f.file_field :avatar
+
+	.control-group
 		.controls
 			= f.submit "Update", :class=>'btn btn-primary'
+			= link_to "Back", :back, :class => 'btn'
 
 %h3 Cancel my account
 %p
 	Unhappy? 
-	=link_to "Cancel my account", 
-		registration_path(resource_name), 
-		:data => { :confirm => "Are you sure?" }, 
-		:method => :delete, :class => 'btn btn-danger'
-	\.
-	= link_to "Back", :back, :class => 'btn'
+
+=link_to "Cancel my account", 
+	registration_path(resource_name), 
+	:data => { :confirm => "Are you sure?" }, 
+	:method => :delete, :class => 'btn btn-danger'
+\.

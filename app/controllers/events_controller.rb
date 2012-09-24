@@ -1,19 +1,21 @@
 class EventsController < ApplicationController
+
 	before_filter :authenticate_user!, :except => [
 		:index, 
 		:show, 
-		:show_featured, 
-		:show_featured_missing, 
-		:show_featured_remote_media, 
-		:show_featured_schedule,
-		:show_schedule
+		:schedule,
+		:featured, 
+		:featured_missing, 
+		:featured_remote_media, 
+		:featured_schedule,
+		:featured_attendees
 	]
 	layout 'events'
 
 	# GET /events
 	# GET /events.json
 	def index
-		@events = Event.all
+		@events = Event.find(:all, :order => :dtstart)
 	end
 
 
@@ -24,14 +26,14 @@ class EventsController < ApplicationController
 	end
 
 
-	def show_featured_missing
+	def featured_missing
 	end
 
 
-	def show_featured
+	def featured
 		@event = Event.first
 		if @event.nil? then
-			redirect_to :action => "show_featured_missing"
+			redirect_to :action => "featured_missing"
 			return
 		end
 
@@ -39,30 +41,30 @@ class EventsController < ApplicationController
 	end
 
 
-	def show_featured_remote_media
+	def featured_remote_media
 		@event = Event.first
 		if @event.nil? then
-			redirect_to :action => "show_featured_missing"
+			redirect_to :action => "featured_missing"
 			return
 		end
 
 		redirect_to event_remote_media_url(:event_id => @event.id)
 	end
 
-	def show_featured_schedule
+	def featured_schedule
 		@event = Event.first
 		if @event.nil? then
-			redirect_to :action => "show_featured_missing"
+			redirect_to :action => "featured_missing"
 			return
 		end
 
-		redirect_to :action => "show_schedule", :id => @event.id
+		redirect_to :action => "schedule", :id => @event.id
 	end
 
 	def featured_attendees
 		@event = Event.first
 		if @event.nil? then
-			redirect_to :action => "show_featured_missing"
+			redirect_to :action => "featured_missing"
 			return
 		end
 
@@ -70,7 +72,7 @@ class EventsController < ApplicationController
 	end
 
 	# GET /events/:id/schedule
-	def show_schedule
+	def schedule
 		@event = Event.find(params[:id])
 
 		@rooms = @event.rooms
