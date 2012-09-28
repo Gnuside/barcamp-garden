@@ -17,26 +17,36 @@
 
 
 	.avatar {
+	    box-sizing: border-box;
 	    display: block;
 	    float: left;
-	    width: 5rem;
-	    height: 5rem;
-	    margin: 0;
+	    margin: .5em;
+	    text-align: center;
 
 	    img {
-		margin: .5rem;
-		width: 4rem;
-		height: 4rem;
+		box-sizing: border-box;
+		width: 100%;
+		height: auto;
 	    }
 	}
 	
-	.name, .comment {
-	    margin-left: 5.5rem;
-	    margin-bottom: 0.5rem;
+	.name {
+	    display: block;
+	    margin: .5em;
+	    font-weight: bold;
+	    text-align: center;
+
+	    a {
+		color: black;
+	    }
 	}
 
-	.name {
-	    font-weight: bold;
+	.actions {
+	    margin: .5em;
+	}
+
+	.comment {
+	    font-style: italic;
 	}
 
     }

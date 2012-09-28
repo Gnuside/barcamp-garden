@@ -92,11 +92,12 @@ class EventAttendeesController < ApplicationController
 	# DELETE /event_attendees/1
 	# DELETE /event_attendees/1.json
 	def destroy
+		@event = Event.find(params[:event_id])
 		@attendee = EventAttendee.find(params[:id])
 		@attendee.destroy
 
 		respond_to do |format|
-			format.html { redirect_to event_attendees_url(@event) }
+			format.html { redirect_to :controller => :event_attendees, :action => :index, :event_id => @event }
 			format.json { head :no_content }
 		end
 	end

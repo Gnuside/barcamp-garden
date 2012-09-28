@@ -7,9 +7,19 @@
 					%li= msg
 
 	.control-group
+		= f.label :firstname, :class => 'control-label'
+		.controls
+			= f.text_field :firstname, :class=>"input-xxlarge", :placeholder => "ex: John"
+
+	.control-group
+		= f.label :lastname, :class => 'control-label'
+		.controls
+			= f.text_field :lastname, :class=>"input-xxlarge", :placeholder => "ex: Smith"
+
+	.control-group
 		= f.label :email, :class=>"control-label"
 		.controls
-			= f.text_field :email, :class=>"input-xxlarge", :placeholder => "john.smith@example.com"
+			= f.text_field :email, :class=>"input-xxlarge", :placeholder => "ex: john.smith@example.com"
 	
 	- if @user.id then
 		.control-group
@@ -22,6 +32,11 @@
 			= f.label :password_confirmation, :class=>'control-label'
 			.controls
 				= f.password_field :password_confirmation
+
+		.control-group
+			= f.label :current_password, :class=>'control-label'
+			.controls
+				= f.password_field :current_password, :autocomplete => "off"
 	- else
 		= f.hidden_field :nopassword, value: "nopassword"
 

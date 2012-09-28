@@ -10,16 +10,25 @@
 .attendee-list.row
 	- @attendees.each do |attendee|
 		.span3.attendee
-			.avatar= image_tag avatar_url(attendee.user,:thumb)
-			.comment= attendee.comment
+			= link_to user_path(attendee.user) do
+				.avatar= image_tag avatar_url(attendee.user,:medium)
 			.name
 				= link_to user_path(attendee.user) do
-					= attendee.user.email
+					%span.firstname
+						= attendee.user.firstname
+					%span.lastname
+						= attendee.user.lastname
+			.company
+				= attendee.user.company
+			- unless attendee.comment.nil?
+				.comment
+					= attendee.comment
 			- if current_user && current_user.admin?
-				.btn_group.pull-right
-					= link_to event_attendee_path(@event,attendee), method: :delete, data: { confirm: 'Are you sure?' }, :class=> 'btn' do
-						%i.icon-remove
-						Unregister
+				.actions
+					.btn_group.pull-right
+						= link_to event_attendee_path(@event,attendee), method: :delete, data: { confirm: 'Are you sure?' }, :class=> 'btn' do
+							%i.icon-remove
+							Unregister
 
 %br
 

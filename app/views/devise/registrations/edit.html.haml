@@ -6,9 +6,20 @@
 	= devise_error_messages!
 
 	.control-group
+		= f.label :firstname, :class => 'control-label'
+		.controls
+			= f.text_field :firstname, :class=>"input-xlarge", :placeholder => "ex: John"
+
+	.control-group
+		= f.label :lastname, :class => 'control-label'
+		.controls
+			= f.text_field :lastname, :class=>"input-xlarge", :placeholder => "ex: Smith"
+
+	.control-group
 		= f.label :email, :class=>'control-label'
 		.controls
-			= f.email_field :email
+			= f.email_field :email, :class=>"input-xlarge", :placeholder => "ex: john.smith@example.com"
+
 
 	.control-group
 		= f.label :password, :class=>'control-label'

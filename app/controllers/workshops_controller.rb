@@ -43,8 +43,7 @@ class WorkshopsController < ApplicationController
  
 		# prefill pad on-the-fly
 		description = "## #{@workshop.title}\n\n" +
-			"Hashtag : ##{@workshop.slug}\n\n" +
-		@workshop.description
+			"Hashtag : ##{@workshop.slug}\n\n"
 
 		@workshop.description = description
 
