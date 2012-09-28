@@ -1,7 +1,7 @@
 module ApplicationHelper
 	def avatar_url user, size = :small
 		default_url = "#{root_url}images/guest.png"
-		if user.avatar.present? then
+		if user.avatar.exists? then
 			user.avatar.url(size)
 		else
 			geom = case size
