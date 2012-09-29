@@ -41,6 +41,11 @@
 		= f.hidden_field :nopassword, value: "nopassword"
 
 	.control-group
+		= f.label :avatar, :class => 'control-label'
+		.controls
+			= f.file_field :avatar
+
+	.control-group
 		= f.label :admin, :class=>"control-label"
 		.controls
 			= f.check_box :admin
