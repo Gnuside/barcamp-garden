@@ -5,12 +5,7 @@
 			Sync etherpad
 		= link_to edit_event_workshop_path(@event,@workshop), :class => 'btn' do
 			%i.icon-edit
-			Edit
-		= link_to event_workshop_path(@event,@workshop), :method => :delete, 
-			:data => { :confirm => "This will delete the event and all associated data"}, 
-			:class => 'btn btn-danger' do
-			%i.icon-remove
-			Delete
+			Edit event
 
 %h1= @event.title
 
