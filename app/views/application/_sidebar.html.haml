@@ -2,10 +2,22 @@
 	.well.sidebar-nav
 		%ul.nav.nav-list
 			%li.nav-header= t('layout.sidebar.currentevent')
-			%li= link_to t('layout.sidebar.presentation'), root_url
-			%li= link_to t('layout.sidebar.attendees'), featured_attendees_url
-			%li= link_to t('layout.sidebar.schedule'), featured_schedule_url
-			%li= link_to t('layout.sidebar.mediastream'), featured_media_url
+			%li
+				%span
+					%i.icon-home
+					= link_to t('layout.sidebar.presentation'), root_url
+			%li
+				%span
+					%i.icon-user
+					= link_to t('layout.sidebar.attendees'), featured_attendees_url
+			%li
+				%span
+					%i.icon-calendar
+					= link_to t('layout.sidebar.schedule'), featured_schedule_url
+			%li
+				%span
+					%i.icon-camera
+					= link_to t('layout.sidebar.mediastream'), featured_media_url
 
 	/
 		.well.sidebar-nav
