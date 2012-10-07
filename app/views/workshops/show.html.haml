@@ -1,23 +1,20 @@
-.btn-group.pull-right
-	- if current_user && current_user.admin? then
-		= link_to event_workshop_sync_path(@event,@workshop), :class=> 'btn' do
-			%i.icon-refresh
-			Sync etherpad
-		= link_to edit_event_workshop_path(@event,@workshop), :class => 'btn' do
-			%i.icon-edit
-			Edit event
+- content_for :title do
+	= "%s : %s" % [@event.title, @workshop.title]
 
-%h1= @event.title
+- if current_user && current_user.admin?
+	.btn_group.pull-right
+
+
+%h1= yield :title
 
 .socialmedia.pull-right
 	%span.label.label-info
-		= "#" + @event.slug
+		%i.icon-tag
+		= @event.slug
 	&nbsp;
 	%span.label.label-info
-		= "#" + @workshop.slug
-
-%h2
-	= @workshop.title
+		%i.icon-tag
+		= @workshop.slug
 
 .datetime
 	%span.dtstart
@@ -38,6 +35,19 @@
 / 	:src=>event_workshop_pad_url(@event,@workshop)}
 
 %p= raw BlueCloth.new(@workshop.description).to_html
+
+
+- if current_user && current_user.admin? then
+	.btn-group.pull-right
+		= link_to event_workshop_sync_path(@event,@workshop), :class=> 'btn' do
+			%i.icon-refresh
+			Sync etherpad
+		= link_to edit_event_workshop_path(@event,@workshop), :class => 'btn' do
+			%i.icon-edit
+			Edit event
+	//	= link_to new_event_workshop_attendee_path(@event), :class => 'btn' do
+	//		%i.icon-user
+	//		Add attendee
 
 = link_to event_workshop_pad_url(@event,@workshop), 
 	:target=>'_blank', :class => 'btn btn-primary' do
