@@ -16,8 +16,10 @@
 							:confirm=>'Are you sure?',
 							:class => 'btn btn-mini icon-remove'
 		- if current_user && current_user.admin? then
-			%td= link_to "Add room", new_event_room_path(@event, :day => day), 
-				:class => 'btn'
+			%td
+				= link_to new_event_room_path(@event, :day => day), :class => 'btn' do
+					%i.icon-plus
+					Add room
 
 	/ BUILD WORKSHOP GRID
 	- @slots.each do |slot|
@@ -43,5 +45,8 @@
 	/ BUILD FOOTER
 	- if current_user && current_user.admin? then
 		%tr
-			%td= link_to "Add slot", new_event_slot_path(@event, :day => day), :class => 'btn'
+			%td
+				= link_to new_event_slot_path(@event, :day => day), :class => 'btn' do
+					%i.icon-plus
+					Add slot
 
