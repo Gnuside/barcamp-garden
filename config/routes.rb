@@ -41,7 +41,12 @@ BarcampGarden::Application.routes.draw do
 	  resources :rooms
 	  resources :slots
 	  resources :workshops do 
-		  resources :workshop_attendees
+		  resources :workshop_attendees, :path => :attendees, :as => :attendees, :controller => :workshop_attendees do
+			  collection do
+				  match '/register' => 'workshop_attendees#register'
+				  match '/unregister' => 'workshop_attendees#unregister'
+			  end
+		  end
 
 		  match '/sync' => 'workshops#sync',
 			  :via => [:get],
