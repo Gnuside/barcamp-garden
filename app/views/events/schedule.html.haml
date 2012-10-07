@@ -1,15 +1,13 @@
 - content_for :title do
 	= @event.title + " : Schedule"
 
-= render :partial => 'events/admin_actions'
-
-%h1= @event.title
+%h1= yield :title
 
 .socialmedia.label.label-info.pull-right
-	= "#" + @event.slug
-
-%h2 Schedule
+	.icon-tag
+	= @event.slug
 
 - @event.dtstart.to_date.upto(@event.dtend.to_date) do |day|
 	= render :partial => 'events/schedule/table', :locals => { :day => day }
 
+= render :partial => 'events/admin_actions'
