@@ -6,6 +6,7 @@
 			:class => 'btn btn-primary'
 	- else
 		/ no workshop
+		\-
 - else
 	- if current_user && current_user.admin? then
 		.btn-group
@@ -19,10 +20,7 @@
 	= link_to event_workshop_path(@event,workshop),
 		:target => "_blank" do
 		%b= workshop.title 
-		%br/
-		\##{workshop.slug}
-	/= link_to File.join(ETHERPAD_URL,'p',"#{@event.slug}_#{workshop.slug}"), 
-	/	:target => "_blank" do
-	/	%b= workshop.title 
-	/	%br/
-	/	\##{workshop.slug}
+		.div
+			.icon-tag
+			= workshop.slug
+
