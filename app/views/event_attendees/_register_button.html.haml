@@ -1,7 +1,14 @@
 - if current_user 
 	- if current_user.attends_to?(@event)
-		= link_to 'Unregister', unregister_event_attendees_path(@event), :class => 'btn btn-warning'
+		= link_to unregister_event_attendees_path(@event), :class => 'btn btn-warning' do
+			%i.icon-remove
+			Unregister
 	-else 
-		= link_to 'Register', register_event_attendees_path(@event), :class => 'btn btn-primary'
+		= link_to register_event_attendees_path(@event), :class => 'btn btn-primary' do
+			%i.icon-ok
+			Register
 - else 
-	= link_to 'Register', register_event_attendees_path(@event), :class => 'btn btn-primary'
+	= link_to register_event_attendees_path(@event), :class => 'btn btn-primary' do
+		%i.icon-ok
+		Register
+
