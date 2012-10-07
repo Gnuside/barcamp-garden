@@ -9,15 +9,18 @@
 					%li= msg
 
 	= f.hidden_field :event_id, :value => @event.id
+
 	.control-group
 		= f.label :user, :class => 'control-label' do
 			Email
 		.controls
 			= select :attendee, :user_id, @users_not_attending.map{ |user| [user.name, user.id] }, {:include_blank => true}
+
 	.control-group
 		= f.label :comment, :class=>'control-label'
 		.controls
 			= f.text_area :comment, :class=>'input-xxlarge'
+
 	.control-group
 		.controls
 			= f.submit 'Save', :class=>'btn btn-primary'

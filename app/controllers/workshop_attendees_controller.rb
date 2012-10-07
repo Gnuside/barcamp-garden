@@ -1,83 +1,93 @@
 class WorkshopAttendeesController < ApplicationController
-  # GET /workshop_attendees
-  # GET /workshop_attendees.json
-  def index
-    @workshop_attendees = WorkshopAttendee.all
+	before_filter :find_event_workshop #, :only => [:show, :edit, :update, :destroy]
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @workshop_attendees }
-    end
-  end
+	# GET /attendees
+	# GET /attendees.json
+	def index
+		@attendees = WorkshopAttendee.all
 
-  # GET /workshop_attendees/1
-  # GET /workshop_attendees/1.json
-  def show
-    @workshop_attendee = WorkshopAttendee.find(params[:id])
+		respond_to do |format|
+			format.html # index.html.erb
+			format.json { render json: @attendees }
+		end
+	end
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @workshop_attendee }
-    end
-  end
+	# GET /attendees/1
+	# GET /attendees/1.json
+	def show
+		@attendee = WorkshopAttendee.find(params[:id])
 
-  # GET /workshop_attendees/new
-  # GET /workshop_attendees/new.json
-  def new
-    @workshop_attendee = WorkshopAttendee.new
+		respond_to do |format|
+			format.html # show.html.erb
+			format.json { render json: @attendee }
+		end
+	end
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @workshop_attendee }
-    end
-  end
+	# GET /attendees/new
+	# GET /attendees/new.json
+	def new
+		#@users_not_attending=@event.attendees.where("id not in (?)", @workshop.attendees.map{ |attendee| attendee.user_id })
+		@users_not_attending=User.where("id not in (?)", @workshop.attendees.map{ |attendee| attendee.user_id })
+		@attendee = @workshop.attendees.new
 
-  # GET /workshop_attendees/1/edit
-  def edit
-    @workshop_attendee = WorkshopAttendee.find(params[:id])
-  end
+		respond_to do |format|
+			format.html # new.html.erb
+			format.json { render json: @attendee }
+		end
+	end
 
-  # POST /workshop_attendees
-  # POST /workshop_attendees.json
-  def create
-    @workshop_attendee = WorkshopAttendee.new(params[:workshop_attendee])
+	# GET /attendees/1/edit
+	def edit
+		@attendee = @workshop.attendees.find(params[:id])
+	end
 
-    respond_to do |format|
-      if @workshop_attendee.save
-        format.html { redirect_to @workshop_attendee, notice: 'Workshop attendee was successfully created.' }
-        format.json { render json: @workshop_attendee, status: :created, location: @workshop_attendee }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @workshop_attendee.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+	# POST /attendees
+	# POST /attendees.json
+	def create
+		@attendee = @workshop.attendees.new(params[:attendee])
 
-  # PUT /workshop_attendees/1
-  # PUT /workshop_attendees/1.json
-  def update
-    @workshop_attendee = WorkshopAttendee.find(params[:id])
+		respond_to do |format|
+			if @attendee.save
+				format.html { redirect_to @attendee, notice: 'Workshop attendee was successfully created.' }
+				format.json { render json: @attendee, status: :created, location: @attendee }
+			else
+				format.html { render action: "new" }
+				format.json { render json: @attendee.errors, status: :unprocessable_entity }
+			end
+		end
+	end
 
-    respond_to do |format|
-      if @workshop_attendee.update_attributes(params[:workshop_attendee])
-        format.html { redirect_to @workshop_attendee, notice: 'Workshop attendee was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @workshop_attendee.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+	# PUT /attendees/1
+	# PUT /attendees/1.json
+	def update
+		@attendee = @workshop.attendees.find(params[:id])
 
-  # DELETE /workshop_attendees/1
-  # DELETE /workshop_attendees/1.json
-  def destroy
-    @workshop_attendee = WorkshopAttendee.find(params[:id])
-    @workshop_attendee.destroy
+		respond_to do |format|
+			if @attendee.update_attributes(params[:attendee])
+				format.html { redirect_to @attendee, notice: 'Workshop attendee was successfully updated.' }
+				format.json { head :no_content }
+			else
+				format.html { render action: "edit" }
+				format.json { render json: @attendee.errors, status: :unprocessable_entity }
+			end
+		end
+	end
 
-    respond_to do |format|
-      format.html { redirect_to workshop_attendees_url }
-      format.json { head :no_content }
-    end
-  end
+	# DELETE /attendees/1
+	# DELETE /attendees/1.json
+	def destroy
+		@attendee = @workshop.attendees.find(params[:id])
+		@attendee.destroy
+
+		respond_to do |format|
+			format.html { redirect_to attendees_url }
+			format.json { head :no_content }
+		end
+	end
+
+	protected
+	def find_event_workshop
+		@event = Event.find(params[:event_id])
+		@workshop = @event.workshops.find(params[:workshop_id])
+	end
 end

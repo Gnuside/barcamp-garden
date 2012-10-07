@@ -10,13 +10,14 @@ class User < ActiveRecord::Base
   has_many :events, :through => :event_attendees
 
   has_many :workshop_attendees, :dependent => :destroy
+  has_many :workshops, :through => :workshop_attendees
+
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-
   
   has_attached_file :avatar, :styles => { 
 	  :big => '600x600>', 

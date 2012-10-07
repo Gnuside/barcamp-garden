@@ -1,11 +1,12 @@
 class EventAttendeesController < ApplicationController
 
+	before_filter :find_event
 	before_filter :authenticate_user!, :except => [:index]
-	
+
+
 	# GET /event_attendees
 	# GET /event_attendees.json
 	def index
-		@event = Event.find(params[:event_id])
 		@attendees = @event.attendees.all
 
 		respond_to do |format|
@@ -15,7 +16,6 @@ class EventAttendeesController < ApplicationController
 	end
 
 	def register
-		@event = Event.find(params[:event_id])
 		@attendee = @event.attendees.new
 		@attendee.event = @event
 		@attendee.user = current_user
@@ -32,10 +32,9 @@ class EventAttendeesController < ApplicationController
 	end
 
 	def unregister
-		@event = Event.find(params[:event_id])
 		@attendee = @event.attendees.where('user_id = ?',current_user.id)
 		@attendee.destroy(@attendee)
-		
+
 		respond_to do |format|
 			format.html { redirect_to event_attendees_url(@event), notice: 'Unregistration successful.' }
 			format.json { head :no_content }
@@ -45,7 +44,6 @@ class EventAttendeesController < ApplicationController
 	# GET /event_attendees/new
 	# GET /event_attendees/new.json
 	def new
-		@event = Event.find(params[:event_id])
 		@users_not_attending=User.where("id not in (?)", @event.attendees.map{ |attendee| attendee.user_id })
 		@attendee = @event.attendees.new
 
@@ -58,7 +56,6 @@ class EventAttendeesController < ApplicationController
 	# POST /event_attendees
 	# POST /event_attendees.json
 	def create
-		@event = Event.find(params[:event_id])
 		@attendee = @event.attendees.new(params[:attendee])
 
 		respond_to do |format|
@@ -75,7 +72,6 @@ class EventAttendeesController < ApplicationController
 	# PUT /event_attendees/1
 	# PUT /event_attendees/1.json
 	def update
-		@event = Event.find(params[:event_id])
 		@attendee = @event.attendees.find(params[:id])
 
 		respond_to do |format|
@@ -92,7 +88,6 @@ class EventAttendeesController < ApplicationController
 	# DELETE /event_attendees/1
 	# DELETE /event_attendees/1.json
 	def destroy
-		@event = Event.find(params[:event_id])
 		@attendee = EventAttendee.find(params[:id])
 		@attendee.destroy
 
@@ -100,5 +95,10 @@ class EventAttendeesController < ApplicationController
 			format.html { redirect_to :controller => :event_attendees, :action => :index, :event_id => @event }
 			format.json { head :no_content }
 		end
+	end
+
+	private
+	def find_event
+		@event = Event.find(params[:event_id])
 	end
 end

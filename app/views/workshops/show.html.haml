@@ -45,9 +45,9 @@
 		= link_to edit_event_workshop_path(@event,@workshop), :class => 'btn' do
 			%i.icon-edit
 			Edit event
-	//	= link_to new_event_workshop_attendee_path(@event), :class => 'btn' do
-	//		%i.icon-user
-	//		Add attendee
+		= link_to new_event_workshop_attendee_path(@event,@workshop), :class => 'btn' do
+			%i.icon-user
+			Add attendee
 
 = link_to event_workshop_pad_url(@event,@workshop), 
 	:target=>'_blank', :class => 'btn btn-primary' do

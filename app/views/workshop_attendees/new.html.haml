@@ -1,5 +1,10 @@
-%h1 New workshop_attendee
+- title = "%s / %s : New attendee" % [@event.title, @workshop.title]
+- content_for :title do
+	= title
+
+%h1= yield :title
 
 = render 'form'
 
-= link_to 'Back', workshop_attendees_path
+= link_to 'Back', event_workshop_attendees_path(@event,@workshop)
+
