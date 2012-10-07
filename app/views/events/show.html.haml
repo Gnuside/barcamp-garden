@@ -1,12 +1,12 @@
 - content_for :title do
 	= @event.title + " : Presentation"
 
-= render :partial => 'events/admin_actions'
 
 %h1= @event.title
 
 .socialmedia.label.label-info.pull-right
-	= "#" + @event.slug
+	.icon-tag
+	= @event.slug
 
 .datetime
 	From :
@@ -17,5 +17,6 @@
 
 %p= raw BlueCloth.new(@event.description).to_html
 
+= render :partial => 'events/admin_actions'
 = render :partial => 'event_attendees/register_button'
 
