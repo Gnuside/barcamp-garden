@@ -1,4 +1,4 @@
-%h1 Listing workshop_attendees
+%h1 Listing attendees
 
 %table
   %tr
@@ -9,15 +9,13 @@
     %th
     %th
 
-  - @workshop_attendees.each do |workshop_attendee|
+  - @attendees.each do |attendee|
     %tr
-      %td= workshop_attendee.comment
-      %td= workshop_attendee.user
-      %td= workshop_attendee.workshop
-      %td= link_to 'Show', workshop_attendee
-      %td= link_to 'Edit', edit_workshop_attendee_path(workshop_attendee)
-      %td= link_to 'Destroy', workshop_attendee, method: :delete, data: { confirm: 'Are you sure?' }
+      %td= attendee.comment
+      %td= attendee.user.name
+      %td= attendee.workshop.title
+      %td= link_to 'Destroy', event_workshop_attendee_path(@event,@workshop,attendee), method: :delete, data: { confirm: 'Are you sure?' }
 
 %br
 
-= link_to 'New Workshop attendee', new_workshop_attendee_path
+= link_to 'New Workshop attendee', new_event_workshop_attendee_path(@event,@workshop)

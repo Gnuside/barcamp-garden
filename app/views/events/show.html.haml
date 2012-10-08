@@ -15,7 +15,7 @@
 	To :
 	%span.dtend= @event.dtend.to_formatted_s(:short)
 
-%p= raw BlueCloth.new(@event.description).to_html
+%p= wiki_render @event.description
 
 = render :partial => 'events/admin_actions'
 = render :partial => 'event_attendees/register_button'

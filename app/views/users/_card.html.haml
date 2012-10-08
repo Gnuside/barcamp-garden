@@ -1,0 +1,15 @@
+.span2.attendee
+	= link_to user_path(attendee.user) do
+		.avatar= image_tag avatar_url(attendee.user,:medium)
+	.name
+		= link_to user_path(attendee.user) do
+			%span.firstname
+				= attendee.user.firstname
+			%span.lastname
+				= attendee.user.lastname
+	.company
+		= attendee.user.company
+	.comment
+		= attendee.comment
+	- if content_for? :user_card_actions then
+		= yield :user_card_actions

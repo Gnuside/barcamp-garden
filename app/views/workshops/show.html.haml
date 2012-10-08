@@ -34,6 +34,10 @@
 / %iframe{:width=>"100%", :height=>"600", :frameborder=>"no",
 / 	:src=>event_workshop_pad_url(@event,@workshop)}
 
+.attendee-list.row
+	- @workshop.attendees.each do |attendee|
+		= render :partial => 'workshop_attendees/card', :locals => { :attendee => attendee }
+
 %p= raw BlueCloth.new(@workshop.description).to_html
 
 

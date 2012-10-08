@@ -1,0 +1,9 @@
+- content_for :user_card_actions do
+	- if current_user && current_user.admin?
+		.actions
+			.btn_group.pull-right
+				= link_to event_attendee_path(@event,attendee), method: :delete, data: { confirm: 'Are you sure?' }, :class=> 'btn' do
+					%i.icon-remove
+					Unregister
+
+= render :partial => 'users/_card'

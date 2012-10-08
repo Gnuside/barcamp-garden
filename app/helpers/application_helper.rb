@@ -15,4 +15,19 @@ module ApplicationHelper
 			return "http://gravatar.com/avatar/#{gravatar_id}.png?s=#{geom}"
 		end
 	end
+
+	def wiki_render description
+		str = raw BlueCloth.new(description).to_html
+=begin
+		str.gsub(
+			/~~SCHEDULE~~/, 
+			render(:partial => "events/schedule/table")
+		)
+=end
+	end
+
+	def single_content_for(name, content = nil, &block)
+		@view_flow.set(name, ActiveSupport::SafeBuffer.new)
+		content_for(name, content, &block)
+	end
 end
