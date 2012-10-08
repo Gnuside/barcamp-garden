@@ -1,4 +1,4 @@
-- content_for :user_card_actions do
+- single_content_for :user_card_actions do
 	- if current_user && current_user.admin?
 		.actions
 			.btn_group.pull-right
@@ -6,4 +6,4 @@
 					%i.icon-remove
 					Unregister
 
-= render :partial => 'users/_card'
+= render :partial => 'users/card', :locals => { :attendee => attendee }

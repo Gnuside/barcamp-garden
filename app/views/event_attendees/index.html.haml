@@ -5,7 +5,7 @@
 
 .attendee-list.row
 	- @attendees.each do |attendee|
-		= render :partial => 'event_attendees/_card'
+		= render :partial => 'event_attendees/card', :locals => { :attendee => attendee }
 
 %br
 
