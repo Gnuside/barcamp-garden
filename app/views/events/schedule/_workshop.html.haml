@@ -17,8 +17,8 @@
 				:confirm=>'Are you sure?',
 				:class => 'btn btn-mini icon-remove'
 
-	= link_to event_workshop_path(@event,workshop),
-		:target => "_blank" do
+	= link_to event_workshop_path(@event,workshop) do
+		//:target => "_blank"
 		%b= workshop.title 
 		.div
 			.icon-tag
