@@ -20,7 +20,8 @@
 			- workshops = @user.workshops.where('event_id = ?',event)
 			- if workshops.empty? || workshops.size < 1 then
 			- else
-				\: 
+				(workshops : 
 				- workshops.map do |workshop|
 					= link_to workshop.title, event_workshop_path(event,workshop)
 				- .join(',')
+				)
