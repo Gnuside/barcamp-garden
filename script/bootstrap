@@ -1,0 +1,37 @@
+#!/bin/env
+
+# FIXME: prepare a packaged version with all dependencies cached ;)
+
+# test if internet access is available (mandatory for GIT)
+
+# test if GIT is available
+
+# test if rbenv is available or install rbenv
+
+# test in ruby-build is available or :
+# - test if MAKE is available or install it
+# - install package zlib1g-dev (required for gem)
+# - install package libssl-dev (required for bundle)
+# - install ruby-build
+
+# test required version of ruby or install ruby 1.9.3-p194
+
+# set your new rbenv ruby as the new system-wide default ruby for this user:
+#
+#   rbenv global 1.9.3-p194
+
+# gem install bundle
+
+# rbenv rehash
+
+# --- end of ruby install ---
+
+# install barcamp garden
+#
+#   git clone git://github.com/Gnuside/barcamp-garden
+
+# bundle install --path vendor/bundle
+
+# at-get install libxml2-dev  libxslt-dev sqlite3 libsqlite3-dev
+
+
