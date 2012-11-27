@@ -26,6 +26,14 @@
 
 # --- end of ruby install ---
 
+
+# install nodejs
+# FIXME
+# install etherpad-lite
+# FIXME
+# setup etherpad-lite
+# FIXME
+
 # install barcamp garden
 #
 #   git clone git://github.com/Gnuside/barcamp-garden
@@ -33,5 +41,3 @@
 # bundle install --path vendor/bundle
 
 # at-get install libxml2-dev  libxslt-dev sqlite3 libsqlite3-dev
-
-
